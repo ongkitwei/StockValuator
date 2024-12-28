@@ -1,7 +1,9 @@
-import React from "react";
-
 function Body() {
-  return <div className="bg-blue-400 flex flex-grow">body sample</div>;
+  return (
+    <div className="bg-white text-black dark:bg-black dark:text-white flex flex-grow">
+      body sample
+    </div>
+  );
 }
 
 export default Body;
