@@ -1,16 +1,27 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./Login";
-import { Routes, Route } from "react-router-dom";
 import SignupPage from "./Signup";
 import HomePage from "./pages/HomePage";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Login />
+  },
+  {
+    path: "/HomePage",
+    element: <HomePage />
+  },
+  {
+    path: "/Signup",
+    element: <SignupPage />
+  }
+]);
 
 function App() {
   return (
     <>
-      <Routes>
-        <Route index element={<Login />}></Route>
-        <Route path="/SignupPage" element={<SignupPage />}></Route>
-        <Route path="/HomePage" element={<HomePage />}></Route>
-      </Routes>
+      <RouterProvider router={router} />
     </>
   );
 }

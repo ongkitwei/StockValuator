@@ -6,7 +6,7 @@ import { IoIosSearch } from "react-icons/io";
 function Header() {
   return (
     <div>
-      <header className="flex flex-row justify-between items-center text-black bg-white h-28 px-24 font-lato hover:bg-black hover:text-white">
+      <header className="flex flex-row justify-between items-center text-black bg-white h-28 px-24 font-lato">
         <div className="flex items-center">
           <GiChargingBull className="text-5xl pr-2" />
           <h1 className="text-2xl font-bold">
@@ -19,7 +19,7 @@ function Header() {
           <h3>Stock Alerts</h3>
         </div>
         <div className="flex items-center gap-5">
-          <div className="flex items-center bg-transparent p-1.5 py-2 rounded-3xl border-none bg-gray-200">
+          <div className="flex items-center bg-transparent p-1.5 py-2 rounded-3xl border-black border-2 bg-gray-200">
             <IoIosSearch className="text-2xl ml-3" />
             <input className="bg-transparent outline-none p-1 shadow-3xl"></input>
           </div>
