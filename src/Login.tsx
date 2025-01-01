@@ -96,8 +96,8 @@ function Login() {
             SUBMIT
           </button>
           <p className="text-white text-sm pt-5 font-thin">
-            Don't have an account?{" "}
-            <Link className="hover:underline" to="/SignupPage">
+            Don't have an account?
+            <Link className="hover:underline" to="/signup">
               Register
             </Link>
           </p>
