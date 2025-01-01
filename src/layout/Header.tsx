@@ -7,7 +7,7 @@ import { ModeToggle } from "../components/ModeToggle";
 
 function Header() {
   return (
-    <header className="flex flex-row justify-between items-center text-foreground bg-white dark:bg-black h-28 px-24 font-lato">
+    <header className="flex flex-row justify-between items-center text-foreground bg-white dark:bg-black h-28 px-24 font-lato fixed top-0 left-0 right-0">
       <div className="flex items-center">
         <GiChargingBull className="text-5xl pr-2" />
         <h1 className="text-2xl font-bold">
