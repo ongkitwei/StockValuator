@@ -1,12 +1,24 @@
 import { GiChargingBull } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { AuthenticateContext } from "./contexts/AuthContext";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  // const [isLoggedIn, setLoggedIn] = useState(false);
+  const { isLoggedIn, setLoggedIn } = useContext(AuthenticateContext);
+
+  // if (!isLoggedIn == undefined || setLoggedIn == undefined) {
+  //   throw new Error(
+  //     "AuthenticateContext must be used within an AuthContext provider."
+  //   );
+  // }
+  // useEffect(() => {
+  //   console.log(`updated state of isLoggedIn is ${isLoggedIn}`);
+  // }, [isLoggedIn]);
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -17,19 +29,44 @@ function Login() {
     }
   }
 
-  function handleLoginButton() {
+  async function handleLoginButton() {
+    if (!email || !password) {
+      return alert("Please fill in both PASSWORD & EMAIL");
+    }
+
     try {
-      const response = axios.post("http://localhost:3000/api/login", {
-        email: email,
-        password: password
-      });
-      console.log(response);
-      navigate("/HomePage");
+      const { data, status } = await axios.post(
+        "http://localhost:3000/api/login",
+        {
+          email: email,
+          password: password
+        }
+      );
+      if (status == 200) {
+        console.log(data);
+        setLoggedIn(true);
+        console.log(isLoggedIn);
+        navigate("/homepage");
+      } else {
+        alert("Login failed, try again !!!");
+      }
     } catch (error) {
       console.error("ERROR: ", error);
       alert("Email or Password incorrect");
     }
   }
+
+  // function handleLoginButton() {
+  //   setAuthenticated(true);
+  // }
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     console.log("good");
+  //   } else {
+  //     console.log("bad");
+  //   }
+  // }, [isAuthenticated]); // Runs whenever `isAuthenticated` changes
+
   return (
     <>
       <div className="bg-black h-screen flex items-center justify-center">

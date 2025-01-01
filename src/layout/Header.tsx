@@ -14,10 +14,11 @@ function Header() {
           Market<span className="text-yellow-400">Clubhouse</span>
         </h1>
       </div>
-      <div className="flex text-xl gap-40">
+      <div className="flex text-xl gap-40 font-irish">
         <h3>My Portfolios</h3>
         <h3>My Watchlist</h3>
         <h3>Stock Alerts</h3>
+        <h3>Calculator</h3>
       </div>
       <div className="flex items-center gap-5">
         <div className="flex items-center bg-transparent p-1.5 py-2 rounded-3xl border-foreground border-2 bg-gray-200">

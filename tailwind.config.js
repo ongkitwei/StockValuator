@@ -5,8 +5,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        irish: ['Irish Grover"', "cursive"],
-        lato: ['Lato"', "serif"]
+        irish: ["Irish Grover", "cursive"],
+        lato: ["Lato", "serif"]
       },
       borderRadius: {
         lg: "var(--radius)",
