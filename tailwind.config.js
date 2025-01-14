@@ -6,7 +6,8 @@ export default {
     extend: {
       fontFamily: {
         irish: ["Irish Grover", "cursive"],
-        lato: ["Lato", "serif"]
+        lato: ["Lato", "serif"],
+        bebas: ['"Bebas Neue"', "cursive"]
       },
       borderRadius: {
         lg: "var(--radius)",
