@@ -5,8 +5,8 @@ import { IoIosSearch } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
 import { ModeToggle } from "../components/ModeToggle";
 import { RxCross1 } from "react-icons/rx";
-
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [isExpanded, setExpanded] = useState<boolean>(false);
@@ -25,18 +25,30 @@ function Header() {
           </h1>
         </div>
 
-        <h3 className="font-irish text-xl hidden lg:flex hover:cursor-pointer">
+        <Link
+          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500"
+          to="/myportfolio"
+        >
           My Portfolios
-        </h3>
-        <h3 className="font-irish text-xl hidden lg:flex hover:cursor-pointer">
+        </Link>
+        <Link
+          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500"
+          to="/mywatchlist"
+        >
           My Watchlist
-        </h3>
-        <h3 className="font-irish text-xl hidden lg:flex hover:cursor-pointer">
+        </Link>
+        <Link
+          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500"
+          to="/stockalerts"
+        >
           Stock Alerts
-        </h3>
-        <h3 className="font-irish text-xl hidden lg:flex hover:cursor-pointer">
+        </Link>
+        <Link
+          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500"
+          to="/calculator"
+        >
           Calculator
-        </h3>
+        </Link>
 
         <div className="items-center hidden lg:flex gap-5">
           <div className="flex items-center bg-transparent p-1.5 py-2 rounded-3xl border-foreground border-2 bg-gray-200">

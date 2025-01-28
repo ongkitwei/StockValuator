@@ -11,7 +11,7 @@ function Footer() {
   return (
     <div
       className="bg-white dark:bg-black
-     text-foreground h-[300px] px-20 flex items-start pt-10 justify-between"
+     text-foreground px-20 flex pt-10 justify-between"
     >
       <div className="flex flex-col items-center">
         <h1 className="text-3xl font-bold flex items-center pb-12">
