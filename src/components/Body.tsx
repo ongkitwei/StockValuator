@@ -1,7 +1,7 @@
 function Body() {
   return (
     <>
-      <div className="bg-white text-foreground dark:text-white dark:bg-black items-center justify-center text-xl p-5 h-screen lg:flex grid-cols-2 gap-20">
+      <div className="bg-white text-foreground dark:text-white dark:bg-black items-center justify-center text-xl p-5 h-screen lg:flex flex-grow grid-cols-2 gap-20">
         <img
           src="../../assets/stock.jpg"
           className="h-[350px] rounded-xl"
