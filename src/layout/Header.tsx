@@ -17,14 +17,15 @@ function Header() {
 
   return (
     <header>
-      <div className="flex flex-row justify-between items-center text-foreground bg-white dark:bg-black h-28 font-lato sticky top-0 left-0 right-0 z-50 px-20">
-        <div className="flex items-center">
-          <GiChargingBull size={45} className="pr-2" />
-          <h1 className="text-2xl font-bold">
-            Market<span className="text-yellow-400">Clubhouse</span>
-          </h1>
-        </div>
-
+      <div className="flex flex-row justify-between items-center text-foreground bg-white dark:bg-[#181818] h-28 font-lato sticky top-0 left-0 right-0 z-50 px-20">
+        <Link to="/homepage">
+          <div className="flex items-center">
+            <GiChargingBull size={45} className="pr-2" />
+            <h1 className="text-2xl font-bold">
+              Portfolio<span className="text-yellow-400">Pilot</span>
+            </h1>
+          </div>
+        </Link>
         <Link
           className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500"
           to="/myportfolio"
@@ -41,7 +42,7 @@ function Header() {
           className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500"
           to="/stockalerts"
         >
-          Stock Alerts
+          Stock Analysis
         </Link>
         <Link
           className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500"
@@ -83,16 +84,16 @@ function Header() {
       >
         <ul>
           <li className="pb-5 border-b border-gray-200 border-r border-r-gray-900 hover:cursor-pointer uppercase">
-            My Portfolios
+            <Link to="/myportfolio">My Portfolios</Link>
           </li>
           <li className="pb-5 border-b border-gray-200 border-r border-r-gray-900 pt-5 hover:cursor-pointer uppercase">
-            My Watchlist
+            <Link to="/mywatchlist">My Watchlist</Link>
           </li>
           <li className="pb-5 border-b border-gray-200 border-r border-r-gray-900 pt-5 hover:cursor-pointer uppercase">
-            Stock Alerts
+            <Link to="/stockalerts">Stock Alerts</Link>
           </li>
           <li className="pb-5 border-b border-gray-200 border-r border-r-gray-900 pt-5 hover:cursor-pointer uppercase">
-            Calculator
+            <Link to="/calculator">Calculator</Link>
           </li>
         </ul>
       </div>

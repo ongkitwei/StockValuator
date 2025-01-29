@@ -10,13 +10,13 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div
-      className="bg-white dark:bg-black
-     text-foreground px-20 flex pt-10 justify-between"
+      className="bg-white dark:bg-[#181818]
+     text-foreground px-20 flex py-10 justify-between"
     >
       <div className="flex flex-col items-center">
         <h1 className="text-3xl font-bold flex items-center pb-12">
           <GiChargingBull className="text-7xl pr-2" />
-          Market<span className="text-yellow-400">Clubhouse</span>
+          Portfolio<span className="text-yellow-400">Pilot</span>
         </h1>
         <div className="text-2xl grid grid-cols-3 gap-x-28 gap-y-8">
           <FaInstagram />
