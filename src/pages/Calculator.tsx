@@ -6,7 +6,7 @@ import CalculatedResultsTable from "@/components/ui/CalculatedResultsTable";
 
 function Calculator() {
   return (
-    <div className="dark:bg-black bg-white min-h-screen">
+    <div className="dark:bg-black bg-white min-h-screen flex flex-col">
       <Header />
       <CalculatorBody />
       <CalculatedResultsTable />

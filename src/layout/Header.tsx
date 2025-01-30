@@ -27,25 +27,25 @@ function Header() {
           </div>
         </Link>
         <Link
-          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500"
+          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500 hover:underline"
           to="/myportfolio"
         >
           My Portfolios
         </Link>
         <Link
-          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500"
+          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500 hover:underline"
           to="/mywatchlist"
         >
           My Watchlist
         </Link>
         <Link
-          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500"
+          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500 hover:underline"
           to="/stockalerts"
         >
           Stock Analysis
         </Link>
         <Link
-          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500"
+          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500 hover:underline"
           to="/calculator"
         >
           Calculator

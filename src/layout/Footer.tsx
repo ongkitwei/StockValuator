@@ -14,10 +14,13 @@ function Footer() {
      text-foreground px-20 flex py-10 justify-between"
     >
       <div className="flex flex-col items-center">
-        <h1 className="text-3xl font-bold flex items-center pb-12">
-          <GiChargingBull className="text-7xl pr-2" />
-          Portfolio<span className="text-yellow-400">Pilot</span>
-        </h1>
+        <Link to="/homepage">
+          <h1 className="text-3xl font-bold flex items-center pb-12">
+            <GiChargingBull className="text-7xl pr-2" />
+            Portfolio<span className="text-yellow-400">Pilot</span>
+          </h1>
+        </Link>
+
         <div className="text-2xl grid grid-cols-3 gap-x-28 gap-y-8">
           <FaInstagram />
           <FaYoutube />
@@ -29,24 +32,49 @@ function Footer() {
       </div>
       <div className="font-serif flex flex-col gap-y-3">
         <span className="text-gray-400 font-bold">Sitemap</span>
-        <Link to="HomePage">Home</Link>
-        <Link to="#">My Portfolios</Link>
-        <Link to="#">My Watchlist</Link>
-        <Link to="#">Stock Alerts</Link>
-        <Link to="#">Glossary</Link>
+        <Link to="/homepage" className="hover:underline">
+          Home
+        </Link>
+        <Link to="/myportfolio" className="hover:underline">
+          My Portfolios
+        </Link>
+        <Link to="/mywatchlist" className="hover:underline">
+          My Watchlist
+        </Link>
+        <Link to="/stockalerts" className="hover:underline">
+          Stock Alerts
+        </Link>
+        <Link to="#" className="hover:underline">
+          Glossary
+        </Link>
       </div>
 
       <div className="font-serif flex flex-col gap-y-3">
         <span className="text-gray-400 font-bold">Tools</span>
-        <Link to="#">My Portfolios</Link>
-        <Link to="#">My Watchlist</Link>
-        <Link to="HomePage">Stock Alerts</Link>
+        <Link to="/myportfolio" className="hover:underline">
+          My Portfolios
+        </Link>
+        <Link to="/mywatchlist" className="hover:underline">
+          My Watchlist
+        </Link>
+        <Link to="/stockalerts" className="hover:underline">
+          Stock Alerts
+        </Link>
+        <Link to="/calculator" className="hover:underline">
+          IV Calculator
+        </Link>
       </div>
       <div className="font-serif flex flex-col gap-y-3">
         <span className="text-gray-400 font-bold">Legal & Privacy</span>
-        <Link to="#">Terms of Service</Link>
-        <Link to="#">Privacy Policy</Link>
-        <Link to="HomePage">Disclaimer</Link>
+        <Link to="#" className="hover:underline">
+          Terms of Service
+        </Link>
+        <Link to="#" className="hover:underline">
+          Privacy Policy
+        </Link>
+        <Link to="/homepage" className="hover:underline">
+          Disclaimer
+        </Link>
       </div>
     </div>
   );
