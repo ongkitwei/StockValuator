@@ -16,8 +16,8 @@ function Header() {
   }
 
   return (
-    <header>
-      <div className="flex flex-row justify-between items-center text-foreground bg-white dark:bg-[#181818] h-28 font-lato sticky top-0 left-0 right-0 z-50 px-20">
+    <header className="sticky top-0">
+      <div className="flex flex-row justify-between items-center text-foreground bg-white dark:bg-[#181818] h-28 font-lato px-20">
         <Link to="/homepage">
           <div className="flex items-center">
             <GiChargingBull size={45} className="pr-2" />

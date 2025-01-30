@@ -9,6 +9,11 @@ function CalculatedResultsTable() {
       <table className="border-white border">
         <thead>
           <tr className="border border-white">
+            {fcfs.length > 1 ? (
+              <th className="border border-white p-3 bg-orange-400 uppercase font-semibold">
+                year
+              </th>
+            ) : null}
             {fcfs.map((a, index) =>
               index < 10 ? (
                 <th
@@ -23,6 +28,11 @@ function CalculatedResultsTable() {
         </thead>
         <tbody>
           <tr className="border border-white bg-slate-500">
+            {fcfs.length > 1 ? (
+              <td className="border border-white p-3 uppercase font-semibold">
+                projected fcf
+              </td>
+            ) : null}
             {fcfs.map((a, index) =>
               index < 10 ? (
                 <td className="border border-white p-3" key={index}>
@@ -37,6 +47,11 @@ function CalculatedResultsTable() {
       <table className="border-white border">
         <thead>
           <tr className="border border-white">
+            {fcfs.length > 1 ? (
+              <th className="border border-white p-3 bg-orange-400 uppercase font-semibold">
+                year
+              </th>
+            ) : null}
             {fcfs.map((a, index) =>
               index >= 10 ? (
                 <th
@@ -51,6 +66,11 @@ function CalculatedResultsTable() {
         </thead>
         <tbody>
           <tr className="border border-white bg-slate-500">
+            {fcfs.length > 1 ? (
+              <td className="border border-white p-3 uppercase font-semibold">
+                projected fcf
+              </td>
+            ) : null}
             {fcfs.map((a, index) =>
               index >= 10 ? (
                 <td className="border border-white p-3" key={index}>
