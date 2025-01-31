@@ -14,6 +14,24 @@ type AuthenticateContextType = {
   setInputRate6to10: React.Dispatch<React.SetStateAction<string>>;
   inputRate11to20: string;
   setInputRate11to20: React.Dispatch<React.SetStateAction<string>>;
+  discountRate: string;
+  setDiscountRate: React.Dispatch<React.SetStateAction<string>>;
+  discountedValue: number[];
+  setDiscountedValue: React.Dispatch<React.SetStateAction<number[]>>;
+  intrinsicValue: number;
+  setIntrinsicValue: React.Dispatch<React.SetStateAction<number>>;
+  calculatorObject: CalculatorObjectType;
+  setCalculatorObject: React.Dispatch<
+    React.SetStateAction<CalculatorObjectType>
+  >;
+};
+
+type CalculatorObjectType = {
+  nameOfStock: string;
+  tickerSymbol: string;
+  cashAndCashEquiv: string;
+  totalDebt: string;
+  oustandingShares: string;
 };
 
 export const AuthenticateContext = createContext<AuthenticateContextType>({
@@ -44,6 +62,34 @@ export const AuthenticateContext = createContext<AuthenticateContextType>({
     throw new Error(
       "setInputRate11to20 function must be overridden by a provider."
     );
+  },
+  discountRate: "",
+  setDiscountRate: () => {
+    throw new Error(
+      "SetDiscountRate function must be overridden by a provider."
+    );
+  },
+  discountedValue: [],
+  setDiscountedValue: () => {
+    throw new Error(
+      "SetDiscountedValue function must be overridden by a provider."
+    );
+  },
+  intrinsicValue: 0,
+  setIntrinsicValue: () => {
+    throw new Error(
+      "SetIntrinsicValue function must be overridden by a provider."
+    );
+  },
+  calculatorObject: {
+    nameOfStock: "",
+    tickerSymbol: "",
+    cashAndCashEquiv: "",
+    totalDebt: "",
+    oustandingShares: ""
+  },
+  setCalculatorObject: () => {
+    throw new Error("SetCalculator function must be overridden by a provider.");
   }
 });
 
@@ -54,6 +100,17 @@ function AuthContext({ children }: { children: ReactNode }) {
   const [inputRate1to5, setInputRate1to5] = useState("");
   const [inputRate6to10, setInputRate6to10] = useState("");
   const [inputRate11to20, setInputRate11to20] = useState("");
+  const [discountRate, setDiscountRate] = useState("");
+  const [discountedValue, setDiscountedValue] = useState<number[]>([]);
+  const [intrinsicValue, setIntrinsicValue] = useState(0);
+  const [calculatorObject, setCalculatorObject] =
+    useState<CalculatorObjectType>({
+      nameOfStock: "",
+      tickerSymbol: "",
+      cashAndCashEquiv: "",
+      totalDebt: "",
+      oustandingShares: ""
+    });
 
   return (
     <AuthenticateContext.Provider
@@ -69,7 +126,15 @@ function AuthContext({ children }: { children: ReactNode }) {
         inputRate6to10,
         setInputRate6to10,
         inputRate11to20,
-        setInputRate11to20
+        setInputRate11to20,
+        discountRate,
+        setDiscountRate,
+        discountedValue,
+        setDiscountedValue,
+        intrinsicValue,
+        setIntrinsicValue,
+        calculatorObject,
+        setCalculatorObject
       }}
     >
       {children}

@@ -12,15 +12,31 @@ const CalculatorTable = () => {
     inputRate6to10,
     setInputRate6to10,
     inputRate11to20,
-    setInputRate11to20
+    setInputRate11to20,
+    discountRate,
+    setDiscountRate,
+    calculatorObject,
+    setCalculatorObject
   } = useContext(AuthenticateContext);
 
   useEffect(() => {
     console.log(inputFcf), [inputFcf];
   });
+  useEffect(() => {
+    console.log(discountRate), [discountRate];
+  });
 
   const handleChangeInputFcf = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputFcf(event.target.value);
+  };
+
+  const handleChangeCashAndCashEquiv = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCalculatorObject((x) => ({
+      ...x,
+      cashAndCashEquiv: event.target.value
+    }));
   };
 
   const handleChangeInputRate1to5 = (
@@ -40,6 +56,39 @@ const CalculatorTable = () => {
     setInputRate11to20(event.target.value);
   };
 
+  const handleChangeDiscountRate = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setDiscountRate(event.target.value);
+  };
+
+  const handleChangeNameOfStock = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCalculatorObject((x) => ({ ...x, nameOfStock: event.target.value }));
+  };
+
+  const handleChangeTickerSymbol = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCalculatorObject((x) => ({ ...x, tickerSymbol: event.target.value }));
+  };
+
+  const handleChangeTotalDebt = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCalculatorObject((x) => ({ ...x, totalDebt: event.target.value }));
+  };
+
+  const handleChangeOutstandingShares = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCalculatorObject((x) => ({
+      ...x,
+      oustandingShares: event.target.value
+    }));
+  };
+
   return (
     <div className="flex flex-col w-[550px] dark:bg-gray-800 rounded-xl">
       <h1 className="dark:bg-teal-600 h-10 flex items-center pl-5 font-bold uppercase rounded-t-xl">
@@ -49,6 +98,8 @@ const CalculatorTable = () => {
         <label>Name Of Stock</label>
         <input
           type="text"
+          value={calculatorObject.nameOfStock}
+          onChange={handleChangeNameOfStock}
           placeholder="Enter Name Of Stock"
           className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
@@ -57,6 +108,8 @@ const CalculatorTable = () => {
         <label>Ticker Symbol</label>
         <input
           type="text"
+          value={calculatorObject.tickerSymbol}
+          onChange={handleChangeTickerSymbol}
           placeholder="Enter Ticker Symbol"
           className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
@@ -87,6 +140,8 @@ const CalculatorTable = () => {
         <label>Cash & Cash Equivalent </label>
         <input
           type="text"
+          value={calculatorObject.cashAndCashEquiv}
+          onChange={handleChangeCashAndCashEquiv}
           placeholder="Enter Cash & Cash Equiv"
           className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
@@ -95,6 +150,8 @@ const CalculatorTable = () => {
         <label>Total Debt</label>
         <input
           type="text"
+          value={calculatorObject.totalDebt}
+          onChange={handleChangeTotalDebt}
           placeholder="Enter Total Debt"
           className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
@@ -139,6 +196,8 @@ const CalculatorTable = () => {
         <label>Outstanding Shares</label>
         <input
           type="text"
+          value={calculatorObject.oustandingShares}
+          onChange={handleChangeOutstandingShares}
           placeholder="No Of Shares"
           className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
@@ -147,6 +206,8 @@ const CalculatorTable = () => {
         <label>Discount Rate</label>
         <input
           type="text"
+          value={discountRate}
+          onChange={handleChangeDiscountRate}
           placeholder="% Discount"
           className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
