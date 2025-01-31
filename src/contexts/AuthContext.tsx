@@ -24,6 +24,8 @@ type AuthenticateContextType = {
   setCalculatorObject: React.Dispatch<
     React.SetStateAction<CalculatorObjectType>
   >;
+  handleCalculateButtonState: number;
+  sethandleCalculateButtonState: React.Dispatch<React.SetStateAction<number>>;
 };
 
 type CalculatorObjectType = {
@@ -81,6 +83,12 @@ export const AuthenticateContext = createContext<AuthenticateContextType>({
       "SetIntrinsicValue function must be overridden by a provider."
     );
   },
+  handleCalculateButtonState: 0,
+  sethandleCalculateButtonState: () => {
+    throw new Error(
+      "SetHandleCalculateButtonState function must be overridden by a provider."
+    );
+  },
   calculatorObject: {
     nameOfStock: "",
     tickerSymbol: "",
@@ -103,6 +111,9 @@ function AuthContext({ children }: { children: ReactNode }) {
   const [discountRate, setDiscountRate] = useState("");
   const [discountedValue, setDiscountedValue] = useState<number[]>([]);
   const [intrinsicValue, setIntrinsicValue] = useState(0);
+  const [handleCalculateButtonState, sethandleCalculateButtonState] =
+    useState(0);
+
   const [calculatorObject, setCalculatorObject] =
     useState<CalculatorObjectType>({
       nameOfStock: "",
@@ -134,7 +145,9 @@ function AuthContext({ children }: { children: ReactNode }) {
         intrinsicValue,
         setIntrinsicValue,
         calculatorObject,
-        setCalculatorObject
+        setCalculatorObject,
+        handleCalculateButtonState,
+        sethandleCalculateButtonState
       }}
     >
       {children}

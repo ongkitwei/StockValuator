@@ -26,6 +26,18 @@ const CalculatorTable = () => {
     console.log(discountRate), [discountRate];
   });
 
+  const handleChangeNameOfStock = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCalculatorObject((x) => ({ ...x, nameOfStock: event.target.value }));
+  };
+
+  const handleChangeTickerSymbol = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCalculatorObject((x) => ({ ...x, tickerSymbol: event.target.value }));
+  };
+
   const handleChangeInputFcf = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputFcf(event.target.value);
   };
@@ -44,6 +56,7 @@ const CalculatorTable = () => {
   ) => {
     setInputRate1to5(event.target.value);
   };
+
   const handleChangeInputRate6to10 = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -60,18 +73,6 @@ const CalculatorTable = () => {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setDiscountRate(event.target.value);
-  };
-
-  const handleChangeNameOfStock = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setCalculatorObject((x) => ({ ...x, nameOfStock: event.target.value }));
-  };
-
-  const handleChangeTickerSymbol = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setCalculatorObject((x) => ({ ...x, tickerSymbol: event.target.value }));
   };
 
   const handleChangeTotalDebt = (

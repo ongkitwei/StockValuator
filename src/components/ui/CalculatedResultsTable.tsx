@@ -1,19 +1,31 @@
 import { AuthenticateContext } from "../../contexts/AuthContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 function CalculatedResultsTable() {
-  const { fcfs, discountedValue, calculatorObject, intrinsicValue } =
-    useContext(AuthenticateContext);
+  const {
+    fcfs,
+    discountedValue,
+    calculatorObject,
+    intrinsicValue,
+    handleCalculateButtonState
+  } = useContext(AuthenticateContext);
+
+  const [stockName, setStockName] = useState<string>("");
+  const [tickerSymbol, setTickerSymbol] = useState<string>("");
+  useEffect(() => {
+    setStockName(calculatorObject.nameOfStock);
+    setTickerSymbol(calculatorObject.tickerSymbol);
+  }, [handleCalculateButtonState]);
 
   return (
     <div className="flex items-center flex-col pt-12 pb-12 gap-7 md:text-lg text-xs">
       {fcfs.length > 1 ? (
         <div>
           <span className="text-[100px] font-extrabold text-pink-300 capitalize font-irish">
-            {calculatorObject.nameOfStock}
+            {stockName}
           </span>
           <span className="pl-3 pr-8 text-orange-200 uppercase">
-            *{calculatorObject.tickerSymbol}
+            *{tickerSymbol}
           </span>
 
           <span className="bg-green-400 text-red-600 p-2 rounded-lg">

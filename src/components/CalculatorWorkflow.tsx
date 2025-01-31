@@ -22,7 +22,9 @@ const CalculatorWorkflow = () => {
     intrinsicValue,
     setIntrinsicValue,
     calculatorObject,
-    setCalculatorObject
+    setCalculatorObject,
+    handleCalculateButtonState,
+    sethandleCalculateButtonState
   } = useContext(AuthenticateContext);
 
   const [fcfGrowthYears, setFcfGrowthYears] = useState<number[]>([]);
@@ -114,6 +116,7 @@ const CalculatorWorkflow = () => {
       );
       setArrayFcf(newArrayFcfs);
       setDiscountedValue(newArrayDiscountedValues);
+      sethandleCalculateButtonState((x) => x + 1);
     }
   }
 
