@@ -10,6 +10,7 @@ import Calculator from "./pages/Calculator";
 import MyPortfolio from "./pages/MyPortfolio";
 import MyWatchlist from "./pages/MyWatchlist";
 import StockAlerts from "./pages/StockAlerts";
+import StockAnalysis from "./pages/StockAnalysis";
 // import { Home } from "lucide-react";
 
 const router = createBrowserRouter([
@@ -44,8 +45,8 @@ const router = createBrowserRouter([
     element: <MyWatchlist />
   },
   {
-    path: "/stockalerts",
-    element: <StockAlerts />
+    path: "/stockanalysis",
+    element: <StockAnalysis />
   }
 ]);
 

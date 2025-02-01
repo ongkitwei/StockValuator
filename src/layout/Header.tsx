@@ -40,7 +40,7 @@ function Header() {
         </Link>
         <Link
           className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500 hover:underline"
-          to="/stockalerts"
+          to="/stockanalysis"
         >
           Stock Analysis
         </Link>
@@ -90,7 +90,7 @@ function Header() {
             <Link to="/mywatchlist">My Watchlist</Link>
           </li>
           <li className="pb-5 border-b border-gray-200 border-r border-r-gray-900 pt-5 hover:cursor-pointer uppercase">
-            <Link to="/stockalerts">Stock Alerts</Link>
+            <Link to="/stockanalysis">Stock Analysis</Link>
           </li>
           <li className="pb-5 border-b border-gray-200 border-r border-r-gray-900 pt-5 hover:cursor-pointer uppercase">
             <Link to="/calculator">Calculator</Link>

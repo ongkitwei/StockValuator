@@ -41,8 +41,8 @@ function Footer() {
         <Link to="/mywatchlist" className="hover:underline">
           My Watchlist
         </Link>
-        <Link to="/stockalerts" className="hover:underline">
-          Stock Alerts
+        <Link to="/stockanalysis" className="hover:underline">
+          Stock Analysis
         </Link>
         <Link to="#" className="hover:underline">
           Glossary
@@ -57,8 +57,8 @@ function Footer() {
         <Link to="/mywatchlist" className="hover:underline">
           My Watchlist
         </Link>
-        <Link to="/stockalerts" className="hover:underline">
-          Stock Alerts
+        <Link to="/stockanalysis" className="hover:underline">
+          Stock Analysis
         </Link>
         <Link to="/calculator" className="hover:underline">
           IV Calculator

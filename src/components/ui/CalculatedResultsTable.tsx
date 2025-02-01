@@ -18,10 +18,10 @@ function CalculatedResultsTable() {
   }, [handleCalculateButtonState]);
 
   return (
-    <div className="flex items-center flex-col pt-12 pb-12 gap-7 md:text-lg text-xs">
+    <div className="flex items-center flex-col pt-12 pb-12 gap-7 md:text-base text-xs">
       {fcfs.length > 1 ? (
         <div>
-          <span className="text-[100px] font-extrabold text-pink-300 capitalize font-irish">
+          <span className="text-[50px] font-extrabold text-pink-300 capitalize font-irish">
             {stockName}
           </span>
           <span className="pl-3 pr-8 text-orange-200 uppercase">
