@@ -5,7 +5,7 @@ import Footer from "@/layout/Footer";
 
 function StockAnalysis() {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Header />
       <StockAnalysisBody />
       <Footer />
