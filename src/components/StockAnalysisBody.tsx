@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthenticateContext } from "@/contexts/AuthContext";
 import InputField from "./ui/InputField";
 import StockAnalysisGeminiResults from "./StockAnalysisGeminiResults";
+import LoadingSpinner from "./ui/LoadingSpinner";
 
 function StockAnalysisBody() {
   const [response, setResponse] = useState<any>();
@@ -46,7 +47,11 @@ function StockAnalysisBody() {
         handleButton={handleGenerateButton}
         handleInputChange={handlechangeInputStockName}
       />
-      {loading ? <p>LOADING ... </p> : null}
+      {loading ? (
+        <div className="flex items-center justify-center pt-8">
+          <LoadingSpinner />
+        </div>
+      ) : null}
       <StockAnalysisGeminiResults response={response} />
     </div>
   );
