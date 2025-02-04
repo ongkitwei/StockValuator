@@ -25,13 +25,122 @@ app.get("/api/generate/:stockName", async (req, res) => {
     const stockName = req.params.stockName;
     const genAi = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     const model = genAi.getGenerativeModel({ model: "gemini-2.0-flash-exp" }); // Correct usage
-    const prompt = `can you give me a moat analysis( with a score of 10) on ${stockName} the moat analysis includes "brand loyalty & pricing power", "high barriers to entry", "high switching costs", "network effect", "economies of scale". with each giving a score of 10 and a short description. the moat analysis score will be the total average score, which will be shown at the top. we try not to give a perfect score for overall Moat score, and help me leave a empty line in between different pointers using <br> tags to make it look tidy, the font size of the overall moat anlaysis should be bigger than the rest, and the response should start with overall moat analysis score..., centering the overall moat anlysis score.Do not include any markdown formatting, code blocks, or backticks.  The output should be pure HTML that can be directly inserted into a web page. can we also have a font-irish for those headers. Example of how it should be: <center><font size="16">Overall Moat Analysis Score: 9.4/10</font></center><font className="font-irish text-3xl"><b>Brand Loyalty & Pricing Power: 10/10</b></font>
+    const prompt =
+      "can you give me a moat analysis( with a score of 10) on" +
+      stockName +
+      'The moat analysis includes "brand loyalty & pricing power", "high barriers to entry", "high switching costs", "network effect", "economies of scale". with each giving a score of 10 and a short description. the moat analysis score will be the total average score, which will be shown at the top. We try not to give a perfect score for overall Moat score. Please strictly follow the format i show and avoid adding ```html at the start and end of the response, the format will be as such:' +
+      ` 
+<div>
 
-<br>
-<p>
-description</p>
-<br>
-<br>`;
+<h1 class="text-5xl text-center font-semibold font-irish">
+
+Overall Moat Analysis Score: x/10
+
+
+
+</h1>
+
+
+
+<br></br>
+
+
+
+<h2 class="text-xl font-semibold font-lato">
+
+
+
+Brand Loyalty & Pricing Power: x/10
+
+
+
+</h2>
+
+
+
+<p>description ...</p>
+
+
+
+<br></br>
+
+
+
+<h2 class="text-xl font-semibold font-lato">
+
+
+
+High Barriers to Entry: x/10
+
+
+
+</h2>
+
+
+
+<p>description ...</p>
+
+
+
+<br></br>
+
+
+
+<h2 class="text-xl font-semibold font-lato">
+
+
+
+High Switching Costs: x/10
+
+
+
+</h2>
+
+
+
+<p>description ...</p>
+
+
+
+<br></br>
+
+
+
+<h2 class="text-xl font-semibold font-lato">Network Effect: x/10</h2>
+
+
+
+<p>description ...</p>
+
+
+
+<br></br>
+
+
+
+<h2 class="text-xl font-semibold font-lato">
+
+
+
+Economies of Scale: x/10
+
+
+
+</h2>
+
+
+
+<p>description ...</p>
+
+
+
+<br></br>
+
+
+
+</div>
+`;
+
     const result = await model.generateContent(prompt);
 
     const responseText = await result.response.text();
