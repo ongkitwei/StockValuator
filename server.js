@@ -30,9 +30,9 @@ app.get("/api/generate/:stockName", async (req, res) => {
       stockName +
       'The moat analysis includes "brand loyalty & pricing power", "high barriers to entry", "high switching costs", "network effect", "economies of scale". with each giving a score of 10 and a short description. the moat analysis score will be the total average score, which will be shown at the top. We try not to give a perfect score for overall Moat score. Please strictly follow the format i show and avoid adding ```html at the start and end of the response, the format will be as such:' +
       ` 
-<div>
+<div class="text-black">
 
-<h1 class="text-5xl text-center font-semibold font-irish">
+<h1 class="text-4xl text-center font-semibold font-irish">
 
 Overall Moat Analysis Score: x/10
 
