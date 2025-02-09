@@ -28,6 +28,12 @@ type AuthenticateContextType = {
   sethandleCalculateButtonState: React.Dispatch<React.SetStateAction<number>>;
   inputStockName: string;
   setInputStockName: React.Dispatch<React.SetStateAction<string>>;
+  watchlistObject: WatchlistObjectType;
+  setWatchlistObject: React.Dispatch<React.SetStateAction<WatchlistObjectType>>;
+  favouritesButton: boolean;
+  setFavouritesButton: React.Dispatch<React.SetStateAction<boolean>>;
+  lastClose: number[];
+  setLastClose: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
 type CalculatorObjectType = {
@@ -37,6 +43,14 @@ type CalculatorObjectType = {
   totalDebt: string;
   oustandingShares: string;
 };
+
+type WatchlistObjectType = [
+  {
+    nameOfStock: string;
+    tickerSymbol: string;
+    intrinsicValue: number;
+  }
+];
 
 export const AuthenticateContext = createContext<AuthenticateContextType>({
   isLoggedIn: false,
@@ -106,6 +120,26 @@ export const AuthenticateContext = createContext<AuthenticateContextType>({
     throw new Error(
       "SetInputStockName function must be overridden by a provider."
     );
+  },
+  watchlistObject: [
+    {
+      nameOfStock: "",
+      tickerSymbol: "",
+      intrinsicValue: 0
+    }
+  ],
+  setWatchlistObject: () => {
+    throw new Error("SetWatchlist function must be overidden by a provider.");
+  },
+  favouritesButton: false,
+  setFavouritesButton: () => {
+    throw new Error(
+      "SetFavouritesButton function must be overidden by a provider."
+    );
+  },
+  lastClose: [],
+  setLastClose: () => {
+    throw new Error("SetLastClose function must be overidden by a provider.");
   }
 });
 
@@ -131,6 +165,15 @@ function AuthContext({ children }: { children: ReactNode }) {
       totalDebt: "",
       oustandingShares: ""
     });
+  const [watchlistObject, setWatchlistObject] = useState<WatchlistObjectType>([
+    {
+      nameOfStock: "",
+      tickerSymbol: "",
+      intrinsicValue: 0
+    }
+  ]);
+  const [favouritesButton, setFavouritesButton] = useState(false);
+  const [lastClose, setLastClose] = useState<number[]>([]);
 
   return (
     <AuthenticateContext.Provider
@@ -158,7 +201,13 @@ function AuthContext({ children }: { children: ReactNode }) {
         handleCalculateButtonState,
         sethandleCalculateButtonState,
         inputStockName,
-        setInputStockName
+        setInputStockName,
+        watchlistObject,
+        setWatchlistObject,
+        favouritesButton,
+        setFavouritesButton,
+        lastClose,
+        setLastClose
       }}
     >
       {children}

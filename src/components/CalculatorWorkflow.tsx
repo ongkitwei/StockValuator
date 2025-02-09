@@ -1,13 +1,10 @@
 import { useState, useContext } from "react";
 import { AuthenticateContext } from "../contexts/AuthContext";
-import { disconnect } from "process";
-import { parse } from "path";
 
 const CalculatorWorkflow = () => {
   const {
     inputFcf,
     setInputFcf,
-    fcfs,
     setArrayFcf,
     inputRate1to5,
     setInputRate1to5,
@@ -17,17 +14,14 @@ const CalculatorWorkflow = () => {
     setInputRate11to20,
     discountRate,
     setDiscountRate,
-    discountedValue,
     setDiscountedValue,
-    intrinsicValue,
     setIntrinsicValue,
     calculatorObject,
     setCalculatorObject,
-    handleCalculateButtonState,
     sethandleCalculateButtonState
   } = useContext(AuthenticateContext);
 
-  const [fcfGrowthYears, setFcfGrowthYears] = useState<number[]>([]);
+  const [_, setFcfGrowthYears] = useState<number[]>([]);
 
   function calculateIntrinsicValue(
     sumDiscountedValue: number,

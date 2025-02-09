@@ -1,7 +1,7 @@
 import { GiChargingBull } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { AuthenticateContext } from "./contexts/AuthContext";
 
 function Login() {

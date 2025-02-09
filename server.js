@@ -1,4 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { createClient } from "@supabase/supabase-js";
+import yahooFinance from "yahoo-finance2";
 import * as dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
@@ -8,17 +10,109 @@ const app = express();
 const port = process.env.PORT || 4000;
 app.use(cors());
 
-function formatText(textToFormat) {
-  // Find the index where "Overall Moat Score" starts
-  const startIndex = textToFormat.indexOf("Moat");
+// Remove the warning showing
+yahooFinance.suppressNotices(["ripHistorical"]);
 
-  // If found, slice the text from there onwards
-  let filteredText =
-    startIndex !== -1 ? textToFormat.slice(startIndex) : textToFormat;
+// Create a single supabase client for interacting with your database
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_API
+);
 
-  return filteredText;
-}
+// Format date for input for yahoo finance
+const formateDate = () => {
+  const date = new Date();
+  const dateString = date.toISOString();
+  const changeDateFormat = dateString.split("T")[0].toString();
 
+  const tenYearsAgoYear = (parseInt(date.getFullYear()) - 1).toString();
+  const monthString = (date.getMonth() + 1).toString().padStart(2, "0");
+  const dayString = date.getDate().toString().padStart(2, "0");
+  const dateTenYearsAgo = tenYearsAgoYear + "-" + monthString + "-" + dayString;
+  return { changeDateFormat, dateTenYearsAgo };
+};
+
+// Get last close price
+const getLastClosePrice = async (ticker) => {
+  try {
+    const result = await yahooFinance.quoteSummary(ticker, {
+      modules: ["summaryDetail"] // Fetch summary details
+    });
+
+    // Extract the last close price
+    const lastClose = result.summaryDetail.previousClose;
+
+    console.log(`Last close price for ${ticker}: $${lastClose}`);
+    return lastClose;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+// Fetch data from Supabase table
+const fetchData = async () => {
+  const { data, error } = await supabase.from("Watchlist").select();
+  return data;
+};
+
+// Insert Data to Supabase table
+const insertData = async (stockName, tickerSymbol, intrinsicValue) => {
+  try {
+    const { data, error } = await supabase.from("Watchlist").insert({
+      Stock_Name: stockName,
+      Ticker_Symbol: tickerSymbol,
+      IV: intrinsicValue
+    });
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+app.get("/api/supabase", async (req, res) => {
+  try {
+    const data = await fetchData();
+    console.log(data);
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Get request for last close
+app.get("/api/lastclose/:symbol", async (req, res) => {
+  try {
+    const { symbol } = req.params;
+    const data = await getLastClosePrice(symbol);
+    console.log(data);
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Get request from yahoo finance
+app.get("/api/genrate/:symbol", async (req, res) => {
+  try {
+    const { symbol } = req.params;
+    const { changeDateFormat, dateTenYearsAgo } = formateDate();
+
+    const result = await yahooFinance.historical(symbol, {
+      period1: dateTenYearsAgo,
+      period2: changeDateFormat,
+      interval: "1mo"
+    });
+    console.log(result);
+    res.json(result);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Get request from Gemini 2.0
 app.get("/api/generate/:stockName", async (req, res) => {
   //Define the API endpoint
   try {
@@ -34,7 +128,7 @@ app.get("/api/generate/:stockName", async (req, res) => {
 
 <h1 class="text-4xl text-center font-semibold font-irish">
 
-Overall Moat Analysis Score: x/10
+  ${stockName} Overall Moat Analysis Score: x/10
 
 
 

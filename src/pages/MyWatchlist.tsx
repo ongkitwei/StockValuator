@@ -1,12 +1,13 @@
 import Footer from "@/layout/Footer";
 import Header from "@/layout/Header";
-import React from "react";
+import MyWatchlistBody from "@/components/MyWatchlistBody";
 
 const MyWatchlist = () => {
   return (
     <div>
       {" "}
       <Header />
+      <MyWatchlistBody />
       <Footer />
     </div>
   );

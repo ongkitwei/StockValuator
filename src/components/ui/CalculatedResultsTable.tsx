@@ -1,36 +1,54 @@
 import { AuthenticateContext } from "../../contexts/AuthContext";
 import { useContext, useEffect, useState } from "react";
+import AddButton from "./FavouritesButton";
 
 function CalculatedResultsTable() {
   const {
     fcfs,
     discountedValue,
     calculatorObject,
+    setCalculatorObject,
     intrinsicValue,
-    handleCalculateButtonState
+    handleCalculateButtonState,
+    favouritesButton,
+    setFavouritesButton,
+    watchlistObject,
+    setWatchlistObject
   } = useContext(AuthenticateContext);
 
   const [stockName, setStockName] = useState<string>("");
   const [tickerSymbol, setTickerSymbol] = useState<string>("");
+
   useEffect(() => {
     setStockName(calculatorObject.nameOfStock);
     setTickerSymbol(calculatorObject.tickerSymbol);
   }, [handleCalculateButtonState]);
 
+  const handleAddButton = () => {
+    console.log("Add button");
+    setFavouritesButton(!favouritesButton);
+
+    // Post req to supabase
+  };
+
   return (
     <div className="flex items-center flex-col pt-12 pb-12 gap-7 md:text-base text-xs">
       {fcfs.length > 1 ? (
-        <div>
+        <div className="flex flex-row justify-center items-center">
           <span className="text-[50px] font-extrabold text-pink-300 capitalize font-irish">
             {stockName}
           </span>
-          <span className="pl-3 pr-8 text-orange-200 uppercase">
+          <span className="pl-3 pr-[300px] text-orange-200 uppercase">
             *{tickerSymbol}
           </span>
 
-          <span className="bg-green-400 text-red-600 p-2 rounded-lg">
+          <span className="bg-green-400 text-red-600 p-2 rounded-lg mr-4">
             {intrinsicValue}
           </span>
+          <AddButton
+            handleFavouritesButton={handleAddButton}
+            favouritesButtonColor={favouritesButton ? "green" : "white"}
+          />
         </div>
       ) : null}
       <table className="border-white border">
@@ -41,7 +59,7 @@ function CalculatedResultsTable() {
                 year
               </th>
             ) : null}
-            {fcfs.map((a, index) =>
+            {fcfs.map((_, index) =>
               index < 10 ? (
                 <th
                   className="border border-white p-3 bg-orange-400"
@@ -95,7 +113,7 @@ function CalculatedResultsTable() {
                 year
               </th>
             ) : null}
-            {fcfs.map((a, index) =>
+            {fcfs.map((_, index) =>
               index >= 10 ? (
                 <th
                   className="border border-white p-3 bg-orange-400"

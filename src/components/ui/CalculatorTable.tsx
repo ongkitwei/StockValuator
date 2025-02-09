@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { AuthenticateContext } from "../../contexts/AuthContext";
 
 const CalculatorTable = () => {
@@ -16,9 +16,25 @@ const CalculatorTable = () => {
     discountRate,
     setDiscountRate,
     calculatorObject,
-    setCalculatorObject
+    setCalculatorObject,
+    setWatchlistObject
   } = useContext(AuthenticateContext);
 
+  useEffect(() => {
+    const fetchSupabaseTableData = async () => {
+      const response = await fetch("http://localhost:4000/api/supabase");
+      const result = await response.json();
+      console.log(result);
+
+      const filteredData = result.map((item: any) => ({
+        nameOfStock: item.Stock_Name,
+        tickerSymbol: item.Ticker_Symbol,
+        intrinsicValue: item.IV
+      }));
+      setWatchlistObject(filteredData);
+    };
+    fetchSupabaseTableData();
+  }, []);
   useEffect(() => {
     console.log(inputFcf), [inputFcf];
   });

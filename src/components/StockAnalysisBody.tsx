@@ -7,7 +7,7 @@ import LoadingSpinner from "./ui/LoadingSpinner";
 function StockAnalysisBody() {
   const [response, setResponse] = useState<any>();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [_, setError] = useState(null);
   const { inputStockName, setInputStockName } = useContext(AuthenticateContext);
 
   async function handleGenerateButton() {
