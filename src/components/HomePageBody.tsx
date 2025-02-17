@@ -1,8 +1,49 @@
 import chartImg from "../../assets/stock.jpg";
 import excelImg from "../../assets/excel_tracker.png";
 import Typewriter from "typewriter-effect";
+import { useEffect, useContext } from "react";
+import { AuthenticateContext } from "@/contexts/AuthContext";
 
 function HomePageBody() {
+  const { setWatchlistObject, setLastClose } = useContext(AuthenticateContext);
+  useEffect(() => {
+    const fetchSupabaseTableData = async () => {
+      const newLastCloseArray: number[] = [];
+      const response = await fetch("http://localhost:4000/api/supabase");
+      const result = await response.json();
+      // console.log(result);
+
+      const filteredData = result.map((item: any) => ({
+        nameOfStock: item.Stock_Name,
+        tickerSymbol: item.Ticker_Symbol,
+        intrinsicValue: item.IV
+      }));
+      console.log(filteredData);
+      for (const x of filteredData) {
+        try {
+          const response = await fetch(
+            `http://localhost:4000/api/lastclose/${x.tickerSymbol}`
+          );
+          console.log(`Fetching data for ${x.tickerSymbol}:`, response.status); // Log status
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.text();
+          if (data) {
+            newLastCloseArray.push(parseFloat(data));
+            console.log(data);
+          }
+        } catch (error) {
+          console.error(`Error fetching data for ${x.tickerSymbol}:`, error);
+        }
+      }
+
+      setWatchlistObject(filteredData);
+      setLastClose(newLastCloseArray);
+    };
+    fetchSupabaseTableData();
+  }, []);
   return (
     <>
       <div className="bg-white text-foreground dark:text-white dark:bg-black items-center justify-center text-xl p-5 h-screen lg:flex flex-grow grid-cols-2 gap-20">

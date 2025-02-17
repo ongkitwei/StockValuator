@@ -1,4 +1,3 @@
-import { DataTable } from "./DataTable";
 import DemoPage from "./Page";
 
 const Testgemini = () => {

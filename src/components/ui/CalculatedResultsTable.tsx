@@ -1,6 +1,7 @@
 import { AuthenticateContext } from "../../contexts/AuthContext";
 import { useContext, useEffect, useState } from "react";
-import AddButton from "./FavouritesButton";
+import FavouritesButton from "./FavouritesButton";
+import axios from "axios";
 
 function CalculatedResultsTable() {
   const {
@@ -9,6 +10,7 @@ function CalculatedResultsTable() {
     calculatorObject,
     setCalculatorObject,
     intrinsicValue,
+    setIntrinsicValue,
     handleCalculateButtonState,
     favouritesButton,
     setFavouritesButton,
@@ -20,15 +22,46 @@ function CalculatedResultsTable() {
   const [tickerSymbol, setTickerSymbol] = useState<string>("");
 
   useEffect(() => {
-    setStockName(calculatorObject.nameOfStock);
-    setTickerSymbol(calculatorObject.tickerSymbol);
+    setStockName(calculatorObject.nameOfStock.toUpperCase());
+    setTickerSymbol(calculatorObject.tickerSymbol.toUpperCase());
   }, [handleCalculateButtonState]);
 
-  const handleAddButton = () => {
-    console.log("Add button");
-    setFavouritesButton(!favouritesButton);
+  useEffect(() => {
+    const updateFavourites = async () => {
+      try {
+        if (favouritesButton) {
+          // Post req to supabase
+          const response = await axios.post(
+            `http://localhost:4000/api/supabase`,
+            {
+              Stock_Name: stockName,
+              Ticker_Symbol: tickerSymbol,
+              IV: intrinsicValue
+            }
+          );
+          console.log("Added: ", response.data);
+        } else {
+          // Delete request to remove favourites stock on supabase
+          // const response = await axios.delete(
+          //   `http://localhost:4000/api/supabase`
+          // );
+          const response = await axios.delete(
+            `http://localhost:4000/api/supabase`,
+            {
+              data: { Ticker_Symbol: tickerSymbol }
+            }
+          );
+          console.log("Deleted:", response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    updateFavourites();
+  }, [favouritesButton]);
 
-    // Post req to supabase
+  const handleFavouritesButton = async () => {
+    setFavouritesButton((x) => !x);
   };
 
   return (
@@ -45,8 +78,8 @@ function CalculatedResultsTable() {
           <span className="bg-green-400 text-red-600 p-2 rounded-lg mr-4">
             {intrinsicValue}
           </span>
-          <AddButton
-            handleFavouritesButton={handleAddButton}
+          <FavouritesButton
+            handleFavouritesButton={handleFavouritesButton}
             favouritesButtonColor={favouritesButton ? "green" : "white"}
           />
         </div>

@@ -26,6 +26,10 @@ dist-ssr
 # Local Backend
 backend/
 testserver.js
+file1.js
+supaBase.js
+yahooFinance.js
 
 # Environment Variable
 .env
+

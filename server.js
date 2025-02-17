@@ -8,7 +8,10 @@ import cors from "cors";
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 4000;
+
 app.use(cors());
+// Middleware to parse jsoon
+app.use(express.json());
 
 // Remove the warning showing
 yahooFinance.suppressNotices(["ripHistorical"]);
@@ -68,6 +71,42 @@ const insertData = async (stockName, tickerSymbol, intrinsicValue) => {
     console.error(error);
   }
 };
+
+app.post("/api/supabase", async (req, res) => {
+  try {
+    const { Stock_Name, Ticker_Symbol, IV } = req.body;
+    console.log("Adding to watchlist:", { Stock_Name, Ticker_Symbol, IV });
+    const { data, error } = await supabase
+      .from("Watchlist")
+      .insert([{ Stock_Name, Ticker_Symbol, IV }])
+      .select();
+    if (error) {
+      console.error("Supabase Error:", error);
+      return res.status(400).json({ error: error.message });
+    }
+    res.status(200).json({ message: "Added successfully", data });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+app.delete("/api/supabase", async (req, res) => {
+  try {
+    const { Ticker_Symbol } = req.body;
+    const { error } = await supabase
+      .from("Watchlist")
+      .delete()
+      .eq("Ticker_Symbol", Ticker_Symbol);
+    if (error) {
+      console.error("Supabase Error:", error);
+      return res.status(400).json({ error: error.message });
+    }
+    res.status(200).json({ message: "Deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 app.get("/api/supabase", async (req, res) => {
   try {

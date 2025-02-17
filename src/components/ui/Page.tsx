@@ -1,27 +1,34 @@
 import { Payment, columns } from "./Columns";
 import { DataTable } from "./DataTable";
-import { useEffect, useState } from "react";
-
-async function getData(): Promise<Payment[]> {
-  // Fetch data from your API here.
-  return [
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com"
-    }
-    // ...
-  ];
-}
+import { useEffect, useState, useContext } from "react";
+import SearchEngine from "./SearchEngine";
+import { FiFilter } from "react-icons/fi";
+import NewWatchlistButton from "./NewWatchlistButton";
+import { AuthenticateContext } from "@/contexts/AuthContext";
 
 export default function DemoPage() {
+  async function getData(): Promise<Payment[]> {
+    return watchlistObject.map((x: any) => ({
+      stockName: x.nameOfStock, // Ensure correct property names
+      tickerSymbol: x.tickerSymbol,
+      intrinsicValue: x.intrinsicValue
+    }));
+  }
+
+  const { watchlistObject } = useContext(AuthenticateContext);
   const [data, setData] = useState<Payment[]>([]);
   useEffect(() => {
     getData().then(setData);
   }, []);
   return (
     <div className="container mx-auto py-10">
+      <div className="flex flex-row justify-between">
+        <div className="flex flex-row items-center justify-end gap-5 pb-8">
+          <SearchEngine />
+          <FiFilter size={25} className="hover:cursor-pointer" />
+        </div>
+        <NewWatchlistButton />
+      </div>
       <DataTable columns={columns} data={data} />
     </div>
   );

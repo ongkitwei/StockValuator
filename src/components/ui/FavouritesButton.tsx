@@ -4,7 +4,7 @@ interface handleFavouritesButtonProps {
   handleFavouritesButton: () => void;
   favouritesButtonColor: string;
 }
-const AddButton: React.FC<handleFavouritesButtonProps> = ({
+const FavouritesButton: React.FC<handleFavouritesButtonProps> = ({
   handleFavouritesButton,
   favouritesButtonColor
 }) => {
@@ -15,4 +15,4 @@ const AddButton: React.FC<handleFavouritesButtonProps> = ({
   );
 };
 
-export default AddButton;
+export default FavouritesButton;

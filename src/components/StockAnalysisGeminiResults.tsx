@@ -12,7 +12,7 @@ function StockAnalysisGeminiResults({ response }: { response: string }) {
             strings: [sanitizedHTML],
             autoStart: true,
             loop: false,
-            delay: 30,
+            delay: 5,
             deleteSpeed: Infinity // Prevents deleting
           }}
         ></Typewriter>
