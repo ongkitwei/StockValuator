@@ -17,53 +17,53 @@ const WatchlistCard: React.FC<WatchlistCardProps> = ({
   intrinsicValue,
   tickerSymbol
 }) => {
-  // const {
-  //   inputFcf,
-  //   discountRate,
-  //   setWatchlistObject,
-  //   watchlistObject,
-  //   lastClose,
-  //   setLastClose
-  // } = useContext(AuthenticateContext);
+  const {
+    inputFcf,
+    discountRate,
+    setWatchlistObject,
+    watchlistObject,
+    lastClose,
+    setLastClose
+  } = useContext(AuthenticateContext);
 
-  // useEffect(() => {
-  //   const fetchSupabaseTableData = async () => {
-  //     const newLastCloseArray: number[] = [];
-  //     const response = await fetch("http://localhost:4000/api/supabase");
-  //     const result = await response.json();
-  //     // console.log(result);
+  useEffect(() => {
+    const fetchSupabaseTableData = async () => {
+      const newLastCloseArray: number[] = [];
+      const response = await fetch("http://localhost:4000/api/supabase");
+      const result = await response.json();
+      // console.log(result);
 
-  //     const filteredData = result.map((item: any) => ({
-  //       nameOfStock: item.Stock_Name,
-  //       tickerSymbol: item.Ticker_Symbol,
-  //       intrinsicValue: item.IV
-  //     }));
-  //     console.log(filteredData);
-  //     for (const x of filteredData) {
-  //       try {
-  //         const response = await fetch(
-  //           `http://localhost:4000/api/lastclose/${x.tickerSymbol}`
-  //         );
-  //         console.log(`Fetching data for ${x.tickerSymbol}:`, response.status); // Log status
+      const filteredData = result.map((item: any) => ({
+        nameOfStock: item.Stock_Name,
+        tickerSymbol: item.Ticker_Symbol,
+        intrinsicValue: item.IV
+      }));
+      console.log(filteredData);
+      for (const x of filteredData) {
+        try {
+          const response = await fetch(
+            `http://localhost:4000/api/lastclose/${x.tickerSymbol}`
+          );
+          console.log(`Fetching data for ${x.tickerSymbol}:`, response.status); // Log status
 
-  //         if (!response.ok) {
-  //           throw new Error(`HTTP error! status: ${response.status}`);
-  //         }
-  //         const data = await response.text();
-  //         if (data) {
-  //           newLastCloseArray.push(parseFloat(data));
-  //           console.log(data);
-  //         }
-  //       } catch (error) {
-  //         console.error(`Error fetching data for ${x.tickerSymbol}:`, error);
-  //       }
-  //     }
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.text();
+          if (data) {
+            newLastCloseArray.push(parseFloat(data));
+            console.log(data);
+          }
+        } catch (error) {
+          console.error(`Error fetching data for ${x.tickerSymbol}:`, error);
+        }
+      }
 
-  //     setWatchlistObject(filteredData);
-  //     setLastClose(newLastCloseArray);
-  //   };
-  //   fetchSupabaseTableData();
-  // }, []);
+      setWatchlistObject(filteredData);
+      setLastClose(newLastCloseArray);
+    };
+    fetchSupabaseTableData();
+  }, []);
 
   // useEffect(() => {
   //   const fetchLastClosePrice = async () => {

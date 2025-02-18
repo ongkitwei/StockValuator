@@ -1,12 +1,15 @@
 import { AuthenticateContext } from "../../contexts/AuthContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import FavouritesButton from "./FavouritesButton";
 import axios from "axios";
+import { useLocation } from "react-router-dom"; // Ensure you have React Router set up
 
 function CalculatedResultsTable() {
   const {
     fcfs,
+    setArrayFcf,
     discountedValue,
+    setDiscountedValue,
     calculatorObject,
     setCalculatorObject,
     intrinsicValue,
@@ -15,11 +18,43 @@ function CalculatedResultsTable() {
     favouritesButton,
     setFavouritesButton,
     watchlistObject,
-    setWatchlistObject
+    setWatchlistObject,
+    setInputRate1to5,
+    setInputRate6to10,
+    setInputRate11to20,
+    setDiscountRate,
+    setInputFcf
   } = useContext(AuthenticateContext);
 
   const [stockName, setStockName] = useState<string>("");
   const [tickerSymbol, setTickerSymbol] = useState<string>("");
+  const isFirstRender = useRef(true); // Track if this is the first render
+  const location = useLocation(); // Track the current location (URL)
+
+  useEffect(() => {
+    console.log("Initial Mount");
+    return () => {
+      setStockName("");
+      setTickerSymbol("");
+      setIntrinsicValue(0);
+      setArrayFcf([]);
+      setDiscountedValue([]);
+      setCalculatorObject({
+        nameOfStock: "",
+        tickerSymbol: "",
+        cashAndCashEquiv: "",
+        totalDebt: "",
+        oustandingShares: ""
+      });
+      setInputRate1to5("");
+      setInputRate6to10("");
+      setInputRate11to20("");
+      setDiscountRate("");
+      setInputFcf("");
+      setFavouritesButton(false);
+      isFirstRender.current = true;
+    };
+  }, [location.pathname]);
 
   useEffect(() => {
     setStockName(calculatorObject.nameOfStock.toUpperCase());
@@ -27,6 +62,11 @@ function CalculatedResultsTable() {
   }, [handleCalculateButtonState]);
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false; // Mark as not first render
+      return; // Exit early to prevent running on mount
+    }
+
     const updateFavourites = async () => {
       try {
         if (favouritesButton) {
