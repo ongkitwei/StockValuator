@@ -5,6 +5,7 @@ import SearchEngine from "./SearchEngine";
 import { FiFilter } from "react-icons/fi";
 import NewWatchlistButton from "./NewWatchlistButton";
 import { AuthenticateContext } from "@/contexts/AuthContext";
+import Modal from "./Modal";
 
 export default function DemoPage() {
   async function getData(): Promise<Payment[]> {
@@ -17,6 +18,7 @@ export default function DemoPage() {
 
   const { watchlistObject } = useContext(AuthenticateContext);
   const [data, setData] = useState<Payment[]>([]);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   useEffect(() => {
     getData().then(setData);
   }, []);
@@ -27,7 +29,10 @@ export default function DemoPage() {
           <SearchEngine />
           <FiFilter size={25} className="hover:cursor-pointer" />
         </div>
-        <NewWatchlistButton />
+        <NewWatchlistButton onClick={() => setOpenModal(true)} />
+        {openModal ? (
+          <Modal isOpen={openModal} onClose={() => setOpenModal(false)} />
+        ) : null}
       </div>
       <DataTable columns={columns} data={data} />
     </div>
