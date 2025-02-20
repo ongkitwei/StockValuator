@@ -16,7 +16,7 @@ function Header() {
   }
 
   return (
-    <header className="sticky top-0">
+    <header className="sticky top-0 z-50">
       <div className="flex flex-row justify-between items-center text-foreground bg-white dark:bg-[#181818] h-28 font-lato px-20">
         <Link to="/homepage">
           <div className="flex items-center">
