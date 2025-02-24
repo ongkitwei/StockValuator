@@ -19,14 +19,24 @@ export default function DemoPage() {
   const { watchlistObject } = useContext(AuthenticateContext);
   const [data, setData] = useState<Payment[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [input, setInput] = useState("");
   useEffect(() => {
     getData().then(setData);
   }, []);
+
+  const handlechangeInSearchEngine = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    // const currentInput = event.target.value;
+    setInput(event.target.value);
+    // console.log(input);
+  };
+
   return (
     <div className="container mx-auto py-10">
       <div className="flex flex-row justify-between">
         <div className="flex flex-row items-center justify-end gap-5 pb-8">
-          <SearchEngine />
+          <SearchEngine onChangeSearchEngine={handlechangeInSearchEngine} />
           <FiFilter size={25} className="hover:cursor-pointer" />
         </div>
         <NewWatchlistButton onClick={() => setOpenModal(true)} />
@@ -34,7 +44,14 @@ export default function DemoPage() {
           <Modal isOpen={openModal} onClose={() => setOpenModal(false)} />
         ) : null}
       </div>
-      <DataTable columns={columns} data={data} />
+      <DataTable
+        columns={columns}
+        data={data.filter((item) => {
+          return input == ""
+            ? item
+            : item.stockName.toLowerCase().includes(input.toLowerCase());
+        })}
+      />
     </div>
   );
 }

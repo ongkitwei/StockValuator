@@ -91,6 +91,7 @@ const WatchlistCard: React.FC<WatchlistCardProps> = ({
   // useEffect(() => {
   //   console.log(discountRate), [discountRate];
   // });
+
   const calculateIvPercentage = () => {
     return Math.abs(
       Number(

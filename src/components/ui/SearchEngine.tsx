@@ -1,6 +1,10 @@
 import React from "react";
 
-const SearchEngine = () => {
+type SearchEngineType = {
+  onChangeSearchEngine: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+const SearchEngine = ({ onChangeSearchEngine }: SearchEngineType) => {
   return (
     <div className="flex items-center justify-center rounded-md bg-gray-800">
       <form method="GET">
@@ -29,6 +33,7 @@ const SearchEngine = () => {
             className="py-2 w-[270px] text-sm text-white bg-gray-900 rounded-md pl-10 focus:outline-none focus:bg-white focus:text-gray-900"
             placeholder="Search..."
             autoComplete="off"
+            onChange={onChangeSearchEngine}
           />
         </div>
       </form>
