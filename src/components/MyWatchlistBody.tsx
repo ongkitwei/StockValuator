@@ -22,7 +22,7 @@ const MyWatchlistBody = () => {
   //   fetchSupabaseTableData();
   // }, []);
   return (
-    <div className="py-16 grid gap-5 2xl:grid-cols-3 lg:grid-cols-2 place-items-center">
+    <div className="py-16 grid gap-5 2xl:grid-cols-3 lg:grid-cols-2 place-items-center flex-grow">
       {watchlistObject.map((x: any, index) => (
         <WatchlistCard
           key={x.tickerSymbol}

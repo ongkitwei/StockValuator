@@ -6,7 +6,7 @@ import { TextSearch } from "lucide-react";
 
 const MyPortfolio = () => {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Header />
       <Testgemini />
       <Footer />

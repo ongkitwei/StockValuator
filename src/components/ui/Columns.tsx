@@ -18,7 +18,9 @@ import {
 export type Payment = {
   stockName: string;
   tickerSymbol: string;
+  currentSharePrice: number;
   intrinsicValue: number;
+  valuation: string;
 };
 
 export const columns: ColumnDef<Payment>[] = [
@@ -55,7 +57,24 @@ export const columns: ColumnDef<Payment>[] = [
     header: "Ticker Symbol"
   },
   {
+    accessorKey: "currentSharePrice",
+    header: "Current Price"
+  },
+  {
     accessorKey: "intrinsicValue",
     header: "Intrinsic Value"
+  },
+  {
+    accessorKey: "valuation",
+    header: "Valuation (%)",
+    cell: ({ row }) => {
+      const valuation = parseFloat(row.getValue("valuation"));
+
+      return (
+        <span className={valuation < 0 ? "text-green-500" : "text-red-500"}>
+          {valuation}%
+        </span>
+      );
+    }
   }
 ];

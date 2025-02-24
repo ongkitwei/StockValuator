@@ -7,16 +7,23 @@ import NewWatchlistButton from "./NewWatchlistButton";
 import { AuthenticateContext } from "@/contexts/AuthContext";
 import Modal from "./Modal";
 
-export default function DemoPage() {
+const DemoPage = () => {
   async function getData(): Promise<Payment[]> {
-    return watchlistObject.map((x: any) => ({
+    return watchlistObject.map((x: any, index) => ({
       stockName: x.nameOfStock, // Ensure correct property names
-      tickerSymbol: x.tickerSymbol,
-      intrinsicValue: x.intrinsicValue
+      tickerSymbol: x.tickerSymbol.toUpperCase(),
+      currentSharePrice: lastClose[index],
+      intrinsicValue: x.intrinsicValue,
+      valuation: String(
+        (
+          ((lastClose[index] - x.intrinsicValue) / x.intrinsicValue) *
+          100
+        ).toFixed(2)
+      )
     }));
   }
 
-  const { watchlistObject } = useContext(AuthenticateContext);
+  const { watchlistObject, lastClose } = useContext(AuthenticateContext);
   const [data, setData] = useState<Payment[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [input, setInput] = useState("");
@@ -54,4 +61,6 @@ export default function DemoPage() {
       />
     </div>
   );
-}
+};
+
+export default DemoPage;

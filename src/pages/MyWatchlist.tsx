@@ -4,7 +4,7 @@ import MyWatchlistBody from "@/components/MyWatchlistBody";
 
 const MyWatchlist = () => {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       {" "}
       <Header />
       <MyWatchlistBody />

@@ -2,7 +2,7 @@ import DemoPage from "./Page";
 
 const Testgemini = () => {
   return (
-    <div>
+    <div className="flex-grow">
       <DemoPage />
     </div>
   );
