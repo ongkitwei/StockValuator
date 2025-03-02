@@ -11,7 +11,6 @@ function HomePageBody() {
       const newLastCloseArray: number[] = [];
       const response = await fetch("http://localhost:4000/api/supabase");
       const result = await response.json();
-      // console.log(result);
 
       const filteredData = result.map((item: any) => ({
         nameOfStock: item.Stock_Name,

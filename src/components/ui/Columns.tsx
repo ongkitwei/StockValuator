@@ -16,11 +16,13 @@ import {
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Payment = {
-  stockName: string;
-  tickerSymbol: string;
-  currentSharePrice: number;
-  intrinsicValue: number;
-  valuation: string;
+  stockName: string | null;
+  tickerSymbol: string | null;
+  noOfShares: number | null;
+  averageSharePrice: number | null;
+  currentSharePrice: number | null;
+  intrinsicValue: number | null;
+  valuation: string | null;
 };
 
 export const columns: ColumnDef<Payment>[] = [
@@ -57,6 +59,17 @@ export const columns: ColumnDef<Payment>[] = [
     header: "Ticker Symbol"
   },
   {
+    accessorKey: "noOfShares",
+    header: "No of Shares"
+  },
+  {
+    accessorKey: "averageSharePrice",
+    header: "Average Price",
+    cell: ({ row }) => (
+      <span className="text-blue-500">{row.getValue("averageSharePrice")}</span>
+    )
+  },
+  {
     accessorKey: "currentSharePrice",
     header: "Current Price"
   },
@@ -68,9 +81,16 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: "valuation",
     header: "Valuation (%)",
     cell: ({ row }) => {
-      const valuation = parseFloat(row.getValue("valuation"));
+      let valuation;
+      if (row.getValue("valuation") == null) {
+        valuation = String(row.getValue("valuation"));
+      } else {
+        valuation = parseFloat(row.getValue("valuation"));
+      }
 
-      return (
+      return typeof valuation == "string" ? (
+        <span></span>
+      ) : (
         <span className={valuation < 0 ? "text-green-500" : "text-red-500"}>
           {valuation}%
         </span>

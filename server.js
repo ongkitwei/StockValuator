@@ -53,8 +53,8 @@ const getLastClosePrice = async (ticker) => {
 };
 
 // Fetch data from Supabase table
-const fetchData = async () => {
-  const { data, error } = await supabase.from("Watchlist").select();
+const fetchData = async (tableName) => {
+  const { data, error } = await supabase.from(tableName).select();
   return data;
 };
 
@@ -110,9 +110,68 @@ app.delete("/api/supabase", async (req, res) => {
 
 app.get("/api/supabase", async (req, res) => {
   try {
-    const data = await fetchData();
+    const data = await fetchData("Watchlist");
     console.log(data);
     res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/supabase/portfolio", async (req, res) => {
+  try {
+    const data = await fetchData("Portfolio");
+    console.log(data);
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post("/api/supabase/portfolio", async (req, res) => {
+  try {
+    const {
+      Stock_Name,
+      Ticker_Symbol,
+      No_Of_Shares,
+      Average_Price,
+      Current_Price,
+      IV,
+      Valuation
+    } = req.body;
+    console.log(
+      "Added portfolio" +
+        {
+          Stock_Name,
+          Ticker_Symbol,
+          No_Of_Shares,
+          Average_Price,
+          Current_Price,
+          IV,
+          Valuation
+        }
+    );
+    const { data, error } = await supabase
+      .from("Portfolio")
+      .insert([
+        {
+          Stock_Name,
+          Ticker_Symbol,
+          No_Of_Shares,
+          Average_Price,
+          Current_Price,
+          IV,
+          Valuation
+        }
+      ])
+      .select();
+    if (error) {
+      console.error("Supabase Error:", error);
+      return res.status(400).json({ error: error.message });
+    }
+    res.status(200).json({ message: "Added successfully", data });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });
