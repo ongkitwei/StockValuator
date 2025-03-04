@@ -24,6 +24,8 @@ type AuthenticateContextType = {
   setCalculatorObject: React.Dispatch<
     React.SetStateAction<CalculatorObjectType>
   >;
+  portfolioObject: PortfolioObjectType;
+  setPortfolioObject: React.Dispatch<React.SetStateAction<PortfolioObjectType>>;
   handleCalculateButtonState: number;
   sethandleCalculateButtonState: React.Dispatch<React.SetStateAction<number>>;
   inputStockName: string;
@@ -35,6 +37,16 @@ type AuthenticateContextType = {
   lastClose: number[];
   setLastClose: React.Dispatch<React.SetStateAction<number[]>>;
 };
+
+type PortfolioObjectType = {
+  nameOfStock: string | null;
+  tickerSymbol: string;
+  noOfShares: number;
+  averageSharePrice: number;
+  currentPrice: number | null;
+  intrinsicValue: number | null;
+  valuation: string | null;
+}[];
 
 type CalculatorObjectType = {
   nameOfStock: string;
@@ -115,6 +127,20 @@ export const AuthenticateContext = createContext<AuthenticateContextType>({
   setCalculatorObject: () => {
     throw new Error("SetCalculator function must be overridden by a provider.");
   },
+  portfolioObject: [
+    {
+      nameOfStock: "",
+      tickerSymbol: "",
+      noOfShares: 0,
+      averageSharePrice: 0,
+      currentPrice: 0,
+      intrinsicValue: 0,
+      valuation: ""
+    }
+  ],
+  setPortfolioObject: () => {
+    throw new Error("SetPortfolio function must be overridden by a provider.");
+  },
   inputStockName: "",
   setInputStockName: () => {
     throw new Error(
@@ -165,6 +191,9 @@ function AuthContext({ children }: { children: ReactNode }) {
       totalDebt: "",
       oustandingShares: ""
     });
+  const [portfolioObject, setPortfolioObject] = useState<PortfolioObjectType>(
+    []
+  );
   const [watchlistObject, setWatchlistObject] = useState<WatchlistObjectType>([
     {
       nameOfStock: "",
@@ -198,6 +227,8 @@ function AuthContext({ children }: { children: ReactNode }) {
         setIntrinsicValue,
         calculatorObject,
         setCalculatorObject,
+        portfolioObject,
+        setPortfolioObject,
         handleCalculateButtonState,
         sethandleCalculateButtonState,
         inputStockName,

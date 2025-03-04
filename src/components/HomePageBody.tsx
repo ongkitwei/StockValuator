@@ -66,6 +66,7 @@ function HomePageBody() {
             using our unique moat rating system— all in one place
           </p>
         </div>
+        {/* Open the modal using document.getElementById('ID').showModal() method */}
       </div>
       <div>
         <img src={excelImg}></img>

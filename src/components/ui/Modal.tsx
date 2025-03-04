@@ -14,7 +14,7 @@ const Modal = ({ isOpen, onClose }: ModalProps) => {
   const [modalTicker, setModalTicker] = useState("");
   const [modalAverageSharePrice, setModalAverageSharePrice] = useState("");
   const [modalNoOfShares, setModalNoOfShares] = useState("");
-  console.log(modalTicker);
+  const [isZoomingOut, setIsZoomingOut] = useState(false); // State for zooming out animation
 
   const updatePortfolio = async (
     stockName: any,
@@ -44,7 +44,6 @@ const Modal = ({ isOpen, onClose }: ModalProps) => {
     }
   };
 
-  //
   const handleModalInput = async () => {
     const findInfoFromWatchlist = watchlistObject.find(
       (x) => x.tickerSymbol.toUpperCase() == modalTicker.toUpperCase()
@@ -108,13 +107,29 @@ const Modal = ({ isOpen, onClose }: ModalProps) => {
     }
     onClose();
   };
-  //
+
+  const closeModalWithAnimation = () => {
+    setIsZoomingOut(true);
+    setTimeout(() => {
+      onClose(); // Close the modal after the animation is complete
+    }, 300); // Duration of the zoom-out animation
+  };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
-      <div className="bg-gray-900 flex flex-col items-center justify-center w-[600px] h-[600px] rounded-xl shadow-lg">
+    <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-[2px] bg-gray-100 bg-opacity-10">
+      <div
+        className={`bg-[#1A1A1A] flex flex-col items-center justify-center h-[360px] w-[750px] rounded-xl shadow-lg ${
+          isZoomingOut ? "animate-zoomOut" : "animate-zoomIn"
+        }`}
+      >
+        <span
+          className="text-white text-2xl hover:cursor-pointer font-semibold ml-[650px] mb-[50px] transition-transform transform hover:scale-125 hover:opacity-80 duration-300 ease-in-out"
+          onClick={closeModalWithAnimation}
+        >
+          x
+        </span>
         <div className="flex flex-col gap-4 items-end pb-9">
           <div className="flex justify-center items-center gap-3">
             <label htmlFor="tickerSymbol">Ticker Symbol</label>
@@ -130,7 +145,7 @@ const Modal = ({ isOpen, onClose }: ModalProps) => {
             <label htmlFor="averageSharePrice">Average Cost Price</label>
             <input
               id="averageSharePrice"
-              className="rounded-xl py-1.5 px-2 text-black"
+              className="rounded-xl py-1.5 px-2 bg-gray-200 text-black"
               onChange={(event) =>
                 setModalAverageSharePrice(event.target.value)
               }
@@ -140,7 +155,7 @@ const Modal = ({ isOpen, onClose }: ModalProps) => {
             <label htmlFor="noOfShares">No of shares</label>
             <input
               id="noOfShares"
-              className="rounded-xl py-1.5 px-2 text-black"
+              className="rounded-xl py-1.5 px-2 bg-gray-200 text-black"
               onChange={(event) => setModalNoOfShares(event.target.value)}
             ></input>
           </div>
@@ -148,7 +163,7 @@ const Modal = ({ isOpen, onClose }: ModalProps) => {
 
         <div className="flex flex-row gap-9">
           <div
-            onClick={onClose}
+            onClick={closeModalWithAnimation}
             className="w-36 h-10 bg-blue-800 flex items-center justify-center rounded-lg hover:cursor-pointer"
           >
             <span>CANCEL</span>

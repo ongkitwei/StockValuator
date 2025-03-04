@@ -1,13 +1,30 @@
 /** @type {import('tailwindcss').Config} */
+// @ts-ignore
+
 export default {
   darkMode: "class",
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      animation: {
+        zoomOut: "zoomOut 0.3s ease-in-out",
+        zoomIn: "zoomIn 0.3s ease-in-out" // Optional: animation for opening
+      },
+      keyframes: {
+        zoomOut: {
+          "0%": { transform: "scale(1)" },
+          "100%": { transform: "scale(0)" }
+        },
+        zoomIn: {
+          "0%": { transform: "scale(0)" },
+          "100%": { transform: "scale(1)" }
+        }
+      },
       fontFamily: {
         irish: ["Irish Grover", "cursive"],
         lato: ["Lato", "serif"],
-        bebas: ['"Bebas Neue"', "cursive"]
+        bebas: ['"Bebas Neue"', "cursive"],
+        oswald: ['"Oswald"', "serif"]
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -58,5 +75,5 @@ export default {
       }
     }
   },
-  plugins: [require("tailwindcss-animate")]
+  plugins: [require("tailwindcss-animate"), require("daisyui")]
 };
