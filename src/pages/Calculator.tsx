@@ -1,7 +1,7 @@
-import Header from "@/layout/Header";
 import Footer from "@/layout/Footer";
 import CalculatorBody from "@/components/CalculatorBody";
 import CalculatedResultsTable from "@/components/ui/CalculatedResultsTable";
+import Header from "@/layout/Header";
 
 function Calculator() {
   return (

@@ -1,72 +1,58 @@
 import { GiChargingBull } from "react-icons/gi";
-import { IoIosNotifications } from "react-icons/io";
-import { FaUserCircle } from "react-icons/fa";
-import { IoIosSearch } from "react-icons/io";
-import { IoMenu } from "react-icons/io5";
 import { ModeToggle } from "../components/ModeToggle";
+import { FaUserCircle } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
+import { IoMenu } from "react-icons/io5";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Header() {
+const Header = () => {
   const [isExpanded, setExpanded] = useState<boolean>(false);
 
   function toggleButton() {
     isExpanded ? setExpanded(false) : setExpanded(true);
   }
-
   return (
-    <header className="sticky top-0 z-50">
-      <div className="flex flex-row justify-between items-center text-foreground bg-white dark:bg-[#181818] h-28 font-lato px-20">
-        <Link to="/homepage">
-          <div className="flex items-center">
-            <GiChargingBull size={45} className="pr-2" />
-            <h1 className="text-2xl font-bold">
-              Portfolio<span className="text-yellow-400">Pilot</span>
-            </h1>
-          </div>
-        </Link>
+    <header className="sticky top-5 z-50 mx-auto">
+      <div className="flex flex-row items-center justify-between dark:bg-black bg-white p-1 px-3 rounded-full gap:8 md:gap-12 ">
         <Link
-          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500 hover:underline"
-          to="/myportfolio"
+          className="flex items-center justify-center p-3 rounded-full hover:shadow-lg hover:shadow-gray-600 hover:cursor-pointer transition-shadow"
+          to="/homepage"
         >
-          My Portfolios
+          <GiChargingBull size={45} className="pr-2" />
+          <h1 className="text-2xl font-bold">
+            Portfolio<span className="text-yellow-400">Pilot</span>
+          </h1>
         </Link>
-        <Link
-          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500 hover:underline"
-          to="/mywatchlist"
-        >
-          My Watchlist
-        </Link>
-        <Link
-          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500 hover:underline"
-          to="/stockanalysis"
-        >
-          Stock Analysis
-        </Link>
-        <Link
-          className="font-irish text-xs hidden lg:flex lg:text-xl hover:cursor-pointer hover:text-slate-500 hover:underline"
-          to="/calculator"
-        >
-          Calculator
-        </Link>
-
-        <div className="items-center hidden lg:flex gap-5">
-          <div className="flex items-center bg-transparent p-1.5 py-2 rounded-3xl border-foreground border-2 bg-gray-200">
-            <IoIosSearch className="text-2xl ml-3" />
-            <input className="bg-transparent outline-none p-1 shadow-3xl"></input>
-          </div>
-          <div>
+        <div className="hidden sm:flex flex-row gap-2 text-base md:text-lg">
+          <Link
+            className="p-3 rounded-full hover:shadow-lg hover:shadow-gray-600 transition-shadow hover:cursor-pointer"
+            to="/myportfolio"
+          >
+            Portfolio
+          </Link>
+          <Link
+            className="p-3 rounded-full hover:shadow-lg hover:shadow-gray-600 transition-shadow hover:cursor-pointer"
+            to="/mywatchlist"
+          >
+            Watchlist
+          </Link>
+          <Link
+            className="p-3 rounded-full hover:shadow-lg hover:shadow-gray-600 transition-shadow hover:cursor-pointer"
+            to="/calculator"
+          >
+            Calculator
+          </Link>
+        </div>
+        <div className="hidden sm:flex flex-row">
+          <div className="p-2 rounded-full">
             <ModeToggle />
           </div>
-          <div className="bg-transparent rounded-full w-11 h-11 flex items-center justify-center hover:cursor-pointer">
-            <IoIosNotifications className="text-3xl text-white" />
-          </div>
-          <div className="flex items-center justify-center hover:cursor-pointer">
+          <div className="flex items-center justify-center hover:cursor-pointer hover:shadow-lg hover:shadow-gray-600 p-2 rounded-full">
             <FaUserCircle className="text-4xl" />
           </div>
         </div>
-        <div className="flex lg:hidden p-5" onClick={toggleButton}>
+        <div className="flex sm:hidden p-5" onClick={toggleButton}>
           {isExpanded ? (
             <RxCross1 size={20} className="hover:cursor-pointer" />
           ) : (
@@ -74,16 +60,15 @@ function Header() {
           )}
         </div>
       </div>
-
       <div
         className={
           isExpanded
-            ? "left-0 top-0 py-5 px-10 bg-white text-foreground w-60 h-screen dark:bg-black dark:text-white ease-in-out duration-500"
+            ? "left-0 top-0 py-5 px-10 bg-white text-foreground w-screen h-screen dark:bg-black dark:text-white ease-in-out duration-500"
             : "fixed left-[-100%]"
         }
       >
         <ul>
-          <li className="pb-5 border-b border-gray-200 border-r border-r-gray-900 hover:cursor-pointer uppercase">
+          <li className="pb-5 border-b border-gray-200 border-r border-r-gray-900 pt-5 hover:cursor-pointer uppercase">
             <Link to="/myportfolio">My Portfolios</Link>
           </li>
           <li className="pb-5 border-b border-gray-200 border-r border-r-gray-900 pt-5 hover:cursor-pointer uppercase">
@@ -99,6 +84,6 @@ function Header() {
       </div>
     </header>
   );
-}
+};
 
 export default Header;
