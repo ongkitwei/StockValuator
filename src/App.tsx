@@ -10,7 +10,7 @@ import Calculator from "./pages/Calculator";
 import MyPortfolio from "./pages/MyPortfolio";
 import MyWatchlist from "./pages/MyWatchlist";
 import StockAnalysis from "./pages/StockAnalysis";
-import Landing from "./pages/Landing";
+import LandingPage from "./pages/LandingPage";
 // import { Home } from "lucide-react";
 
 const router = createBrowserRouter([
@@ -50,7 +50,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/landingpage",
-    element: <Landing />
+    element: <LandingPage />
   }
 ]);
 
