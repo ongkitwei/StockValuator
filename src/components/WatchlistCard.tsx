@@ -9,13 +9,15 @@ interface WatchlistCardProps {
   currentSharePrice: number;
   intrinsicValue: number;
   tickerSymbol: string;
+  onClick: () => void;
 }
 
 const WatchlistCard: React.FC<WatchlistCardProps> = ({
   stockName,
   currentSharePrice,
   intrinsicValue,
-  tickerSymbol
+  tickerSymbol,
+  onClick
 }) => {
   const {
     inputFcf,
@@ -102,26 +104,26 @@ const WatchlistCard: React.FC<WatchlistCardProps> = ({
   };
   const ivPercentage = calculateIvPercentage();
   return (
-    <div className="w-[470px] h-[470px] bg-slate-800 p-8 flex flex-col items-center rounded-2xl">
-      <div className="flex flex-row justify-center items-center gap-x-4">
+    <div
+      className="w-[380px] h-[280px] md:w-[500px] bg-black border-2 border-gray-800 grid grid-rows-3 place-items-center px-5 rounded-2xl hover:cursor-pointer"
+      onClick={onClick}
+    >
+      <div className="flex flex-row justify-center items-center gap-x-4 pt-5 pb-12">
         {" "}
-        <h1 className="font-semibold text-3xl">{stockName}</h1>
-        <RiDeleteBin7Fill color="white" size={25} />
+        <h1 className="font-semibold sm:text-2xl md:text-3xl text-xl">
+          {stockName}
+        </h1>
       </div>
-      <div>
-        {/* <img src={Amzngraph} className="rounded-sm"></img> */}
-        <MyWatchlistChart tickerSymbol={tickerSymbol} />
-      </div>
-      <div className="flex flex-row justify-between gap-x-5 items-center">
-        <div className="flex flex-col gap-y-2">
-          <p className="bg-gray-300 w-[230px] h-8 flex items-center justify-between text-gray-700 rounded-md text-sm px-4">
+      <div className="flex flex-row items-center justify-center gap-2">
+        <div className="grid grid-rows-2 place-items-center gap-y-4">
+          <p className="bg-gray-300 w-[200px] md:w-[300px] h-6 flex items-center justify-between text-gray-700 rounded-md text-sm px-4">
             <div className="flex items-center">
               <MdAttachMoney />
-              <span className="pl-1">Current Share Price</span>
+              <span className="pl-1">Current Price</span>
             </div>
             {currentSharePrice}
           </p>
-          <p className="bg-gray-300 w-[230px] h-8 flex items-center justify-between text-center text-gray-700 rounded-md text-sm px-4">
+          <p className="bg-gray-300 w-[200px] md:w-[300px] h-6 flex items-center justify-between text-center text-gray-700 rounded-md text-sm px-4">
             <div className="flex items-center">
               <GiMoneyStack />
               <span className="pl-1">Intrinsic Value</span>
@@ -130,11 +132,12 @@ const WatchlistCard: React.FC<WatchlistCardProps> = ({
           </p>
         </div>
         <p
-          className={`${intrinsicValue > currentSharePrice ? "bg-green-500" : "bg-red-500"} w-24 h-[70px] flex items-center justify-center text-center text-gray-700 rounded-md`}
+          className={`${intrinsicValue > currentSharePrice ? "bg-green-500" : "bg-red-500"} w-24 h-[70px] flex items-center justify-center text-center text-gray-700 rounded-md font-semibold`}
         >
           {ivPercentage}%
         </p>
       </div>
+      <MyWatchlistChart tickerSymbol={tickerSymbol} />
     </div>
   );
 };
