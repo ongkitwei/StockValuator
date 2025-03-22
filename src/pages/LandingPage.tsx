@@ -1,4 +1,5 @@
 import LandingBody from "@/components/LandingBody";
+import Footer from "@/layout/Footer";
 import HeaderLanding from "@/layout/HeaderLanding";
 
 const LandingPage = () => {
@@ -6,6 +7,7 @@ const LandingPage = () => {
     <div className="flex flex-col bg-black min-h-screen pt-5 scroll-smooth">
       <HeaderLanding />
       <LandingBody />
+      <Footer />
     </div>
   );
 };

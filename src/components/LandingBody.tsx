@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Marquee from "react-fast-marquee";
 import mungerQuoteImg from "../../assets/mungerquote.png";
 import buffetQuoteImg from "../../assets/buffetquote.jpg";
@@ -24,7 +23,7 @@ const LandingBody = () => {
     grahamQuoteImg
   ];
   return (
-    <div className="flex flex-col mx-auto pt-56 items-center max-w-full">
+    <div className="flex flex-col mx-auto pt-36 items-center max-w-full">
       <h1 className=" text-5xl sm:text-6xl font-bold flex flex-col items-center">
         <a>Value a stock</a>
         <a> in seconds, not hours</a>
@@ -36,7 +35,7 @@ const LandingBody = () => {
       <button className="btn btn-active btn-warning rounded-full py-8 px-12 sm:px-16 sm:py-8 text-lg text-black">
         Get Instant Access
       </button>
-      <div className="pt-28 w-[900px] md:w-[1000px]">
+      <div className="pt-28 w-[600px] md:w-[870px] lg:w-[1000px]">
         <img src={landingpageTimeline} />
       </div>
       <div
@@ -108,13 +107,13 @@ const LandingBody = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-16 rounded-3xl shadow-2xl shadow-white">
+      <div className="mx-auto mt-16 rounded-3xl p-5 flex items-center justify-center">
         <Marquee speed={50} pauseOnHover={false} direction="right">
           {images.map((src, i) => (
             <img
               key={i}
               src={src}
-              className="w-[500px] h-[350px] object-cover mx-4 my-4 rounded-3xl"
+              className="w-[350px] h-[250px] mx-5 object-cover rounded-3xl"
               alt="Slideshow"
             />
           ))}

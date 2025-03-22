@@ -18,7 +18,8 @@ const CalculatorWorkflow = () => {
     setIntrinsicValue,
     calculatorObject,
     setCalculatorObject,
-    sethandleCalculateButtonState
+    sethandleCalculateButtonState,
+    setFavouritesButton
   } = useContext(AuthenticateContext);
 
   const [_, setFcfGrowthYears] = useState<number[]>([]);
@@ -52,6 +53,7 @@ const CalculatorWorkflow = () => {
       totalDebt: "",
       oustandingShares: ""
     }));
+    setFavouritesButton((x) => !x);
     setInputFcf("");
     setInputRate1to5("");
     setInputRate6to10("");

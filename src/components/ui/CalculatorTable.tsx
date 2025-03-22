@@ -118,7 +118,7 @@ const CalculatorTable = () => {
           value={calculatorObject.nameOfStock}
           onChange={handleChangeNameOfStock}
           placeholder="Enter Name Of Stock"
-          className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="rounded-md py-2 px-3 text-center text-black border dark:text-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
       </div>
       <div className="flex flex-row items-center justify-between pb-2 px-5">
@@ -128,7 +128,7 @@ const CalculatorTable = () => {
           value={calculatorObject.tickerSymbol}
           onChange={handleChangeTickerSymbol}
           placeholder="Enter Ticker Symbol"
-          className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="rounded-md py-2 px-3 text-center text-black dark:text-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
       </div>
       <div className="flex flex-row items-center justify-between pb-2 px-5">
@@ -137,7 +137,7 @@ const CalculatorTable = () => {
           type="text"
           placeholder="Discounted Cash Flow"
           readOnly
-          className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-yellow-300 bg-white"
+          className="rounded-md py-2 px-3 text-center text-black border dark:text-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-yellow-300 bg-white"
         ></input>
       </div>
       <h1 className="dark:bg-teal-600 h-10 flex items-center pl-5 font-bold uppercase">
@@ -150,7 +150,7 @@ const CalculatorTable = () => {
           value={inputFcf}
           onChange={handleChangeInputFcf}
           placeholder="Enter Current FCF"
-          className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="rounded-md py-2 px-3 text-center text-black border dark:text-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
       </div>
       <div className="flex flex-row items-center justify-between pb-2 px-5">
@@ -160,7 +160,7 @@ const CalculatorTable = () => {
           value={calculatorObject.cashAndCashEquiv}
           onChange={handleChangeCashAndCashEquiv}
           placeholder="Enter Cash & Cash Equiv"
-          className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="rounded-md py-2 px-3 text-center text-black border dark:text-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
       </div>
       <div className="flex flex-row items-center justify-between pb-2 px-5">
@@ -170,7 +170,7 @@ const CalculatorTable = () => {
           value={calculatorObject.totalDebt}
           onChange={handleChangeTotalDebt}
           placeholder="Enter Total Debt"
-          className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="rounded-md py-2 px-3 text-center text-black border dark:text-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
       </div>
       <h1 className="dark:bg-teal-600 h-10 flex items-center pl-5 font-bold uppercase">
@@ -183,7 +183,7 @@ const CalculatorTable = () => {
           value={inputRate1to5}
           onChange={handleChangeInputRate1to5}
           placeholder="% Year 1-5"
-          className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="rounded-md py-2 px-3 text-center text-black dark:text-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
       </div>
       <div className="flex flex-row items-center justify-between pb-2 px-5">
@@ -193,7 +193,7 @@ const CalculatorTable = () => {
           value={inputRate6to10}
           onChange={handleChangeInputRate6to10}
           placeholder="% Year 6-10"
-          className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="rounded-md py-2 px-3 text-center text-black dark:text-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
       </div>
       <div className="flex flex-row items-center justify-between pb-2 px-5">
@@ -203,7 +203,7 @@ const CalculatorTable = () => {
           value={inputRate11to20}
           onChange={handleChangeInputRate11to20}
           placeholder="% Year 6-10"
-          className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="rounded-md py-2 px-3 text-center text-black dark:text-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
       </div>
       <h1 className="dark:bg-teal-600 h-10 flex items-center pl-5 font-bold uppercase">
@@ -216,7 +216,7 @@ const CalculatorTable = () => {
           value={calculatorObject.oustandingShares}
           onChange={handleChangeOutstandingShares}
           placeholder="No Of Shares"
-          className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="rounded-md py-2 px-3 text-center text-black dark:text-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
       </div>
       <div className="flex flex-row items-center justify-between pb-2 px-5">
@@ -226,7 +226,7 @@ const CalculatorTable = () => {
           value={discountRate}
           onChange={handleChangeDiscountRate}
           placeholder="% Discount"
-          className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="rounded-md py-2 px-3 text-center text-black dark:text-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
       </div>
       <div className="flex flex-row items-center justify-between pb-2 px-5">
@@ -235,7 +235,7 @@ const CalculatorTable = () => {
           type="text"
           placeholder="2025"
           readOnly
-          className="rounded-md py-2 px-3 text-center text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-yellow-300 bg-white"
+          className="rounded-md py-2 px-3 text-center text-black dark:text-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-yellow-300 bg-white"
         ></input>
       </div>
     </div>

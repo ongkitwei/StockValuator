@@ -1,4 +1,4 @@
-import Header from "../layout/Header3";
+import Header from "../layout/HeaderLanding";
 
 export default function Contact() {
   return (

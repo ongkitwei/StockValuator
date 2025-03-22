@@ -1,9 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { RiDeleteBin7Fill } from "react-icons/ri";
 import { MdAttachMoney } from "react-icons/md";
 import { GiMoneyStack } from "react-icons/gi";
 import MyWatchlistChart from "./ui/MyWatchlistChart";
 import { AuthenticateContext } from "@/contexts/AuthContext";
+import Bin from "@/components/icons/Bin";
+import NewWatchlistButton from "./ui/NewWatchlistButton";
+import { watch } from "fs";
+import axios from "axios";
+
 interface WatchlistCardProps {
   stockName: string;
   currentSharePrice: number;
@@ -27,6 +32,27 @@ const WatchlistCard: React.FC<WatchlistCardProps> = ({
     lastClose,
     setLastClose
   } = useContext(AuthenticateContext);
+  const [deleteButtonState, setDeleteButtonState] = useState(false);
+  const isFirstRender = useRef(true); // Track if this is the first render
+
+  // useEffect(() => {
+  //   if (isFirstRender.current) {
+  //     isFirstRender.current = false; // Mark as not first render
+  //     return; // Exit early to prevent running on mount
+  //   }
+  //   const deleteFromSupabase = async () => {
+  //     console.log("delete");
+  //     const response = await axios.delete(
+  //       `http://localhost:4000/api/supabase/watchlist`,
+  //       {
+  //         data: { Stock_Name: stockName }
+  //       }
+  //     );
+  //   };
+  //   if (stockName) {
+  //     deleteFromSupabase(); // Only call delete after the component has mounted
+  //   }
+  // }, [deleteButtonState]);
 
   useEffect(() => {
     const fetchSupabaseTableData = async () => {
@@ -92,6 +118,22 @@ const WatchlistCard: React.FC<WatchlistCardProps> = ({
   // useEffect(() => {
   //   console.log(discountRate), [discountRate];
   // });
+  const manageDeleteCard = async (stockName: string) => {
+    const newWatchlistObject = watchlistObject.filter(
+      (stock) => stock.nameOfStock != stockName
+    );
+    // setWatchlistObject(newWatchlistObject);
+    console.log(newWatchlistObject);
+    console.log(watchlistObject);
+    setWatchlistObject(newWatchlistObject);
+    console.log(`delete from supabase`);
+    const response = await axios.delete(
+      `http://localhost:4000/api/supabase/watchlist`,
+      {
+        data: { Stock_Name: stockName }
+      }
+    );
+  };
 
   const calculateIvPercentage = () => {
     return Math.abs(
@@ -104,17 +146,18 @@ const WatchlistCard: React.FC<WatchlistCardProps> = ({
   };
   const ivPercentage = calculateIvPercentage();
   return (
-    <div
-      className="w-[380px] h-[280px] md:w-[500px] bg-black border-2 border-gray-800 grid grid-rows-3 place-items-center px-5 rounded-2xl hover:cursor-pointer"
-      onClick={onClick}
-    >
+    <div className="w-[380px] h-[280px] md:w-[500px] bg-black border-2 border-gray-800 grid grid-rows-3 place-items-center px-5 rounded-2xl hover:cursor-pointer">
       <div className="flex flex-row justify-center items-center gap-x-4 pt-5 pb-12">
         {" "}
         <h1 className="font-semibold sm:text-2xl md:text-3xl text-xl">
           {stockName}
         </h1>
+        <Bin onClick={() => manageDeleteCard(stockName)} />
       </div>
-      <div className="flex flex-row items-center justify-center gap-2">
+      <div
+        className="flex flex-row items-center justify-center gap-2"
+        onClick={onClick}
+      >
         <div className="grid grid-rows-2 place-items-center gap-y-4">
           <p className="bg-gray-300 w-[200px] md:w-[300px] h-6 flex items-center justify-between text-gray-700 rounded-md text-sm px-4">
             <div className="flex items-center">

@@ -43,7 +43,7 @@ const MyWatchlistBody = () => {
   }
   return (
     <>
-      <div className="flex flex-col md:flex-rows-2 items-center justify-center space-y-7 p-12 2xl:grid 2xl:grid-cols-3 xl:grid xl:grid-cols-2">
+      <div className="grid grid-rows-1 gap-7 p-12 m-auto lg:grid-cols-2 lg:m-auto lg:gap-x-5 2xl:grid 2xl:grid-cols-3 xl:grid xl:grid-cols-2">
         {watchlistObject.map((x: any, index) => (
           <WatchlistCard
             key={x.tickerSymbol}
@@ -58,7 +58,7 @@ const MyWatchlistBody = () => {
       </div>
       {/* Modal */}
       <dialog id="my_modal_3" className="modal">
-        <div className="modal-box">
+        <div className="modal-box max-h-[600px] max-w-[600px] rounded-2xl p-12">
           <form method="dialog">
             {/* Close button */}
             <button className="btn btn-lg btn-circle btn-ghost absolute right-2 top-2">
@@ -71,7 +71,6 @@ const MyWatchlistBody = () => {
             ) : (
               <div dangerouslySetInnerHTML={{ __html: response }} />
             )}
-            <span className="text-black">diaidiadas</span>
           </div>
         </div>
       </dialog>

@@ -1,5 +1,5 @@
 import Header from "../layout/Header";
-import Header3 from "../layout/Header3";
+import Header3 from "../layout/HeaderLanding";
 import Footer from "../layout/Footer";
 import HomePageBody from "../components/HomePageBody";
 import { Outlet } from "react-router-dom";

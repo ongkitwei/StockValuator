@@ -25,22 +25,13 @@ const Header = () => {
           </h1>
         </Link>
         <div className="hidden sm:flex flex-row gap-2 text-base md:text-lg">
-          <Link
-            className="p-3 rounded-full hover:shadow-lg hover:shadow-gray-600 transition-shadow hover:cursor-pointer"
-            to="/myportfolio"
-          >
+          <Link className="p-3 rounded-full link link-hover" to="/myportfolio">
             Portfolio
           </Link>
-          <Link
-            className="p-3 rounded-full hover:shadow-lg hover:shadow-gray-600 transition-shadow hover:cursor-pointer"
-            to="/mywatchlist"
-          >
+          <Link className="p-3 rounded-full link link-hover" to="/mywatchlist">
             Watchlist
           </Link>
-          <Link
-            className="p-3 rounded-full hover:shadow-lg hover:shadow-gray-600 transition-shadow hover:cursor-pointer"
-            to="/calculator"
-          >
+          <Link className="p-3 rounded-full link link-hover" to="/calculator">
             Calculator
           </Link>
         </div>

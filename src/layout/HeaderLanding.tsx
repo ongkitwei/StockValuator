@@ -53,7 +53,7 @@ const HeaderLanding = () => {
             className="p-3 rounded-full link link-hover"
             href="#landingpagefaq"
           >
-            FAQ
+            About
           </a>
         </div>
         <div className="dark:bg-white text-black py-2 px-3 font-bold rounded-3xl text-center hidden md:block">

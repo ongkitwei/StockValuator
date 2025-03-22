@@ -56,13 +56,11 @@ type CalculatorObjectType = {
   oustandingShares: string;
 };
 
-type WatchlistObjectType = [
-  {
-    nameOfStock: string;
-    tickerSymbol: string;
-    intrinsicValue: number;
-  }
-];
+type WatchlistObjectType = {
+  nameOfStock: string;
+  tickerSymbol: string;
+  intrinsicValue: number;
+}[];
 
 export const AuthenticateContext = createContext<AuthenticateContextType>({
   isLoggedIn: false,

@@ -108,6 +108,24 @@ app.delete("/api/supabase", async (req, res) => {
   }
 });
 
+app.delete("/api/supabase/watchlist", async (req, res) => {
+  try {
+    const { Stock_Name } = req.body;
+    const { error } = await supabase
+      .from("Watchlist")
+      .delete()
+      .eq("Stock_Name", Stock_Name);
+    if (error) {
+      console.error("Supabase Error:", error);
+      return res.status(400).json({ error: error.message });
+    }
+    res.status(200).json({ message: "Deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get("/api/supabase", async (req, res) => {
   try {
     const data = await fetchData("Watchlist");
@@ -224,13 +242,7 @@ app.get("/api/generate/:stockName", async (req, res) => {
       ` 
 <div class="text-white">
 
-<h1 class="text-4xl text-center font-semibold font-irish">
-
-  ${stockName} Overall Moat Analysis Score: x/10
-
-
-
-</h1>
+<h1 class="text-4xl text-center font-semibold font-irish">${stockName} Overall Moat Analysis Score: x/10</h1>
 
 
 
