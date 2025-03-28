@@ -61,7 +61,7 @@ const CalculatorWorkflow = () => {
     setDiscountRate("");
   }
 
-  function handleCalculateButton() {
+  async function handleCalculateButton() {
     if (
       isNaN(parseFloat(inputFcf)) ||
       inputRate1to5 == null ||
@@ -69,6 +69,18 @@ const CalculatorWorkflow = () => {
     ) {
       alert("Is FCF, Growth Rate filled up ???");
     } else {
+      const response = await fetch(
+        `http://localhost:4000/api/calculatorinfo/${calculatorObject.tickerSymbol}`
+      );
+      const data = await response.json();
+      setCalculatorObject((x) => ({ ...x, nameOfStock: data.stockName }));
+      console.log(data.impliedSharesOutstanding);
+      console.log(data.totalDebt);
+      console.log(
+        `Fetching data for ${calculatorObject.tickerSymbol}:`,
+        response.status
+      ); // Log status
+
       setFcfGrowthYears([]);
       setArrayFcf([]);
       const currentYear = new Date().getFullYear();
@@ -106,8 +118,8 @@ const CalculatorWorkflow = () => {
         calculateIntrinsicValue(
           sumDiscountedValue,
           parseFloat(calculatorObject.cashAndCashEquiv),
-          parseFloat(calculatorObject.totalDebt),
-          parseFloat(calculatorObject.oustandingShares)
+          parseFloat(data.totalDebt),
+          parseFloat(data.impliedSharesOutstanding)
         )
       );
       setArrayFcf(newArrayFcfs);

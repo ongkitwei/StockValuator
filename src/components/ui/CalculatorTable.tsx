@@ -42,11 +42,11 @@ const CalculatorTable = () => {
     console.log(discountRate), [discountRate];
   });
 
-  const handleChangeNameOfStock = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setCalculatorObject((x) => ({ ...x, nameOfStock: event.target.value }));
-  };
+  // const handleChangeNameOfStock = (
+  //   event: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   setCalculatorObject((x) => ({ ...x, nameOfStock: event.target.value }));
+  // };
 
   const handleChangeTickerSymbol = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -91,37 +91,35 @@ const CalculatorTable = () => {
     setDiscountRate(event.target.value);
   };
 
-  const handleChangeTotalDebt = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setCalculatorObject((x) => ({ ...x, totalDebt: event.target.value }));
-  };
+  // const handleChangeTotalDebt = (
+  //   event: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   setCalculatorObject((x) => ({ ...x, totalDebt: event.target.value }));
+  // };
 
-  const handleChangeOutstandingShares = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setCalculatorObject((x) => ({
-      ...x,
-      oustandingShares: event.target.value
-    }));
-  };
+  // const handleChangeOutstandingShares = (
+  //   event: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   setCalculatorObject((x) => ({
+  //     ...x,
+  //     oustandingShares: event.target.value
+  //   }));
+  // };
 
   return (
     <div className="flex flex-col w-[550px] dark:bg-gray-800 rounded-xl">
       <h1 className="dark:bg-teal-600 h-10 flex items-center pl-5 font-bold uppercase rounded-t-xl">
         stock info
       </h1>
-      <div className="flex flex-row items-center justify-between pb-2 pt-3 px-5">
+      {/* <div className="flex flex-row items-center justify-between pb-2 pt-3 px-5">
         <label>Name Of Stock</label>
         <input
           type="text"
-          value={calculatorObject.nameOfStock}
-          onChange={handleChangeNameOfStock}
           placeholder="Enter Name Of Stock"
-          className="rounded-md py-2 px-3 text-center text-black border dark:text-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="rounded-md py-2 px-3 text-center text-black border dark:text-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-yellow-300 bg-white"
         ></input>
-      </div>
-      <div className="flex flex-row items-center justify-between pb-2 px-5">
+      </div> */}
+      <div className="flex flex-row items-center justify-between pb-2 px-5 pt-3">
         <label>Ticker Symbol</label>
         <input
           type="text"
@@ -163,16 +161,15 @@ const CalculatorTable = () => {
           className="rounded-md py-2 px-3 text-center text-black border dark:text-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         ></input>
       </div>
-      <div className="flex flex-row items-center justify-between pb-2 px-5">
+      {/* <div className="flex flex-row items-center justify-between pb-2 px-5">
         <label>Total Debt</label>
         <input
           type="text"
-          value={calculatorObject.totalDebt}
-          onChange={handleChangeTotalDebt}
+          readOnly
           placeholder="Enter Total Debt"
-          className="rounded-md py-2 px-3 text-center text-black border dark:text-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="rounded-md py-2 px-3 text-center text-black border dark:text-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-yellow-300 bg-white"
         ></input>
-      </div>
+      </div> */}
       <h1 className="dark:bg-teal-600 h-10 flex items-center pl-5 font-bold uppercase">
         projected growth
       </h1>
@@ -209,17 +206,16 @@ const CalculatorTable = () => {
       <h1 className="dark:bg-teal-600 h-10 flex items-center pl-5 font-bold uppercase">
         shares
       </h1>
-      <div className="flex flex-row items-center justify-between pb-2 pt-3 px-5">
+      {/* <div className="flex flex-row items-center justify-between pb-2 pt-3 px-5">
         <label>Outstanding Shares</label>
         <input
           type="text"
-          value={calculatorObject.oustandingShares}
-          onChange={handleChangeOutstandingShares}
+          readOnly
           placeholder="No Of Shares"
-          className="rounded-md py-2 px-3 text-center text-black dark:text-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="rounded-md py-2 px-3 text-center text-black border dark:text-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-yellow-300 bg-white"
         ></input>
-      </div>
-      <div className="flex flex-row items-center justify-between pb-2 px-5">
+      </div> */}
+      <div className="flex flex-row items-center justify-between pb-2 px-5 pt-3">
         <label>Discount Rate</label>
         <input
           type="text"

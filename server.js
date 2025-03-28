@@ -22,6 +22,28 @@ const supabase = createClient(
   process.env.SUPABASE_API
 );
 
+const getCalculatorInfo = async (ticker) => {
+  try {
+    const results = await yahooFinance.quoteSummary(ticker, {
+      modules: ["defaultKeyStatistics", "financialData"] // Fetch the financial data
+    });
+    const result = await yahooFinance.quote(ticker);
+    const stockName = result.longName || result.shortName;
+    const impliedSharesOutstanding = Math.trunc(
+      parseInt(results.defaultKeyStatistics.impliedSharesOutstanding / 1000000)
+    );
+    const totalDebt = Math.trunc(
+      parseInt(results.financialData.totalDebt) / 1000000
+    );
+    console.log("loading");
+    console.log(impliedSharesOutstanding);
+    console.log(totalDebt);
+    return { impliedSharesOutstanding, totalDebt, stockName };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
 // Format date for input for yahoo finance
 const formateDate = () => {
   const date = new Date();
@@ -196,7 +218,19 @@ app.post("/api/supabase/portfolio", async (req, res) => {
   }
 });
 
-// Get request for last close
+// Backend to scrape info for calculator
+app.get("/api/calculatorinfo/:ticker", async (req, res) => {
+  try {
+    const { ticker } = req.params;
+    const { impliedSharesOutstanding, totalDebt, stockName } =
+      await getCalculatorInfo(ticker.toUpperCase());
+    res.json({ impliedSharesOutstanding, totalDebt, stockName });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.get("/api/lastclose/:symbol", async (req, res) => {
   try {
     const { symbol } = req.params;

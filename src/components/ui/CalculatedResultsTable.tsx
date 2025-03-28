@@ -57,7 +57,7 @@ function CalculatedResultsTable() {
   }, [location.pathname]);
 
   useEffect(() => {
-    setStockName(calculatorObject.nameOfStock.toUpperCase());
+    setStockName(calculatorObject.nameOfStock);
     setTickerSymbol(calculatorObject.tickerSymbol.toUpperCase());
   }, [handleCalculateButtonState]);
 
@@ -111,11 +111,10 @@ function CalculatedResultsTable() {
           <span className="text-[50px] font-extrabold text-pink-300 capitalize font-irish">
             {stockName}
           </span>
-          <span className="pl-3 pr-[300px] text-orange-200 uppercase">
+          <span className="pl-3 pr-[100px] text-orange-200 uppercase">
             *{tickerSymbol}
           </span>
-
-          <span className="bg-green-400 text-red-600 p-2 rounded-lg mr-4">
+          <span className="badge badge-success badge-lg p-5 mr-3">
             {intrinsicValue}
           </span>
           <FavouritesButton
